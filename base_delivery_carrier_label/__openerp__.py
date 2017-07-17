@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Base module for carrier labels',
- 'version': '1.2',
+ 'version': '7.0.1.2.0',
  'author': "Camptocamp,Akretion,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'version',
@@ -52,6 +52,7 @@ Contributors
  'website': 'http://www.camptocamp.com/',
  'data': ['delivery_view.xml',
           'stock_view.xml',
+          'carrier_account_view.xml',
           'res_config_view.xml',
           'security/ir.model.access.csv',
           ],
