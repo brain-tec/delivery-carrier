@@ -3,14 +3,15 @@
 # * delivery_carrier_deposit
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: carrier-delivery (8.0)\n"
+"Project-Id-Version: delivery-carrier (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 09:32+0000\n"
-"PO-Revision-Date: 2015-06-16 16:32+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-carrier-delivery-8-0/language/es/)\n"
+"POT-Creation-Date: 2017-05-13 01:44+0000\n"
+"PO-Revision-Date: 2017-05-16 12:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-delivery-carrier-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -45,7 +46,7 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: view:delivery.deposit.wizard:delivery_carrier_deposit.view_wiz_create_deposit
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: delivery_carrier_deposit
 #: model:ir.model,name:delivery_carrier_deposit.model_delivery_carrier
@@ -68,22 +69,22 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: delivery_carrier_deposit
 #: view:deposit.slip:delivery_carrier_deposit.view_deposit_slip_form
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: delivery_carrier_deposit
 #: view:website:delivery_carrier_deposit.report_generic_deposit_slip
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #. module: delivery_carrier_deposit
 #: view:delivery.deposit.wizard:delivery_carrier_deposit.view_wiz_create_deposit
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #. module: delivery_carrier_deposit
 #: view:delivery.deposit.wizard:delivery_carrier_deposit.view_wiz_create_deposit
@@ -111,7 +112,7 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: help:deposit.slip,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Fecha del último mensaje publicado en el registro."
 
 #. module: delivery_carrier_deposit
 #: view:website:delivery_carrier_deposit.report_generic_deposit_slip
@@ -157,19 +158,25 @@ msgid "Deposit Slip n°"
 msgstr ""
 
 #. module: delivery_carrier_deposit
+#: field:delivery.deposit.wizard,display_name:0
+#: field:deposit.slip,display_name:0
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: delivery_carrier_deposit
 #: selection:deposit.slip,state:0
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #. module: delivery_carrier_deposit
 #: selection:deposit.slip,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: delivery_carrier_deposit
 #: model:ir.actions.report.xml,name:delivery_carrier_deposit.report_deposit_slip
@@ -179,14 +186,14 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: view:deposit.slip:delivery_carrier_deposit.view_deposit_slip_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: delivery_carrier_deposit
 #: help:deposit.slip,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Contiene el resumen del chatter (nº de mensajes, ...). Este resumen está directamente en formato html para ser insertado en vistas kanban."
 
 #. module: delivery_carrier_deposit
 #: field:delivery.deposit.wizard,id:0 field:deposit.slip,id:0
@@ -196,7 +203,7 @@ msgstr "ID"
 #. module: delivery_carrier_deposit
 #: help:deposit.slip,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si se marca los nuevos mensajes requerirán su atención."
 
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_is_follower:0
@@ -206,7 +213,13 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Fecha del último mensaje"
+
+#. module: delivery_carrier_deposit
+#: field:delivery.deposit.wizard,__last_update:0
+#: field:deposit.slip,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
 
 #. module: delivery_carrier_deposit
 #: field:delivery.deposit.wizard,write_uid:0 field:deposit.slip,write_uid:0
@@ -221,7 +234,7 @@ msgstr "Última Actualización en"
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: delivery_carrier_deposit
 #: help:deposit.slip,message_ids:0
@@ -244,6 +257,11 @@ msgid "Nr of"
 msgstr ""
 
 #. module: delivery_carrier_deposit
+#: field:deposit.slip,number_of_packages:0
+msgid "Number of Packages"
+msgstr ""
+
+#. module: delivery_carrier_deposit
 #: view:website:delivery_carrier_deposit.report_generic_deposit_slip
 msgid "Parcel numbers"
 msgstr ""
@@ -252,6 +270,12 @@ msgstr ""
 #: model:ir.model,name:delivery_carrier_deposit.model_stock_picking
 msgid "Picking List"
 msgstr "Albarán"
+
+#. module: delivery_carrier_deposit
+#: field:delivery.deposit.wizard,picking_type_id:0
+#: field:deposit.slip,picking_type_id:0
+msgid "Picking Type"
+msgstr "Tipo de albarán"
 
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,picking_ids:0
@@ -271,15 +295,15 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,state:0
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Resumen"
 
 #. module: delivery_carrier_deposit
-#: code:addons/delivery_carrier_deposit/wizard/deposit.py:77
+#: code:addons/delivery_carrier_deposit/wizard/deposit.py:94
 #, python-format
 msgid ""
 "There are no delivery orders in transferred state with a delivery method "
@@ -289,6 +313,11 @@ msgstr ""
 #. module: delivery_carrier_deposit
 #: view:website:delivery_carrier_deposit.report_generic_deposit_slip
 msgid "Total Number of Packages:"
+msgstr ""
+
+#. module: delivery_carrier_deposit
+#: field:deposit.slip,weight:0
+msgid "Total Weight"
 msgstr ""
 
 #. module: delivery_carrier_deposit
@@ -309,7 +338,7 @@ msgstr "Tipo"
 #. module: delivery_carrier_deposit
 #: field:deposit.slip,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes sin leer"
 
 #. module: delivery_carrier_deposit
 #: view:website:delivery_carrier_deposit.report_generic_deposit_slip

@@ -13,15 +13,18 @@ You'll find:
  - Generation of shipping labels for specific carrier (PostLogistics, ...)
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[base_delivery_carrier_files](base_delivery_carrier_files/) | 1.2.3 | Base Delivery Carrier Files
+[base_delivery_carrier_files](base_delivery_carrier_files/) | 8.0.1.2.4 | Base Delivery Carrier Files
 [base_delivery_carrier_label](base_delivery_carrier_label/) | 8.0.1.2.0 | Base module for carrier labels
 [delivery_carrier_b2c](delivery_carrier_b2c/) | 8.0.0.2.0 | Delivery Carrier Business To Customer
-[delivery_carrier_deposit](delivery_carrier_deposit/) | 8.0.0.2.0 | Create deposit slips
+[delivery_carrier_deposit](delivery_carrier_deposit/) | 8.0.0.2.1 | Create deposit slips
+[delivery_carrier_label_gls](delivery_carrier_label_gls/) | 8.0.0.1.0 | GLS carrier label printing
 [delivery_carrier_label_postlogistics](delivery_carrier_label_postlogistics/) | 8.0.1.1.0 | PostLogistics Labels WebService
+
 
 Unported addons
 ---------------
@@ -32,7 +35,6 @@ addon | version | summary
 [delivery_carrier_file_tnt](delivery_carrier_file_tnt/) | 1.0 (unported) | Delivery Carrier File: TNT
 [delivery_carrier_label_default_webkit](delivery_carrier_label_default_webkit/) | 1.0 (unported) | Module for carrier labels
 [delivery_carrier_label_dispatch](delivery_carrier_label_dispatch/) | 1.0 (unported) | Carrier labels - Picking dispatch (link)
-[delivery_carrier_label_gls](delivery_carrier_label_gls/) | 0.1 (unported) | GLS carrier label printing
 [delivery_carrier_label_postlogistics_shop_logo](delivery_carrier_label_postlogistics_shop_logo/) | 1.0 (unported) | PostLogistics labels - logo per Shop
 [delivery_optional_invoice_line](delivery_optional_invoice_line/) | 0.1 (unported) | Delivery Optional Invoice Line
 
