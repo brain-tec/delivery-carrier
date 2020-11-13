@@ -5,9 +5,12 @@ import base64
 import re
 import logging
 import json
+import unidecode
 import requests
+import threading
 from PIL import Image
 from io import StringIO
+from datetime import datetime, timedelta
 
 from odoo import _, exceptions
 
@@ -15,6 +18,13 @@ _logger = logging.getLogger(__name__)
 
 _compile_itemid = re.compile(r'[^0-9A-Za-z+\-_]')
 _compile_itemnum = re.compile(r'[^0-9]')
+
+
+def _sanitize_string(string):
+    """Temporary fix, remove all non ascii char as the API
+    weirdly doesn't support them in some cases.
+    """
+    return unidecode.unidecode(string)
 
 
 class PostlogisticsWebService(object):
@@ -28,6 +38,10 @@ class PostlogisticsWebService(object):
     Allows to generate labels
 
     """
+
+    access_token = False
+    access_token_expiry = False
+    _lock = threading.Lock()
 
     def __init__(self, company):
         self.default_lang = company.partner_id.lang or 'en'
@@ -61,8 +75,8 @@ class PostlogisticsWebService(object):
 
         partner_name = partner.name or partner.parent_id.name
         recipient = {
-            'name1': partner_name,
-            'street': partner.street,
+            'name1': _sanitize_string(partner_name),
+            'street': _sanitize_string(partner.street),
             'zip': partner.zip,
             'city': partner.city,
             'email': partner.email or None,
@@ -72,10 +86,10 @@ class PostlogisticsWebService(object):
             recipient['country'] = partner.country_id.code.upper()
 
         if partner.street2:
-            recipient['addressSuffix'] = partner.street2
+            recipient['addressSuffix'] = _sanitize_string(partner.street2)
 
         if partner.parent_id and partner.parent_id.name != partner_name:
-            recipient['name2'] = partner.parent_id.name
+            recipient['name2'] = _sanitize_string(partner.parent_id.name)
             recipient['personallyAddressed'] = False
 
         # Phone and / or mobile should only be displayed if instruction to
@@ -106,8 +120,8 @@ class PostlogisticsWebService(object):
         partner = company.partner_id
 
         customer = {
-            'name1': partner.name,
-            'street': partner.street,
+            'name1': _sanitize_string(partner.name),
+            'street': _sanitize_string(partner.street),
             'zip': partner.zip,
             'city': partner.city,
             'country': partner.country_id.code,
@@ -329,7 +343,8 @@ class PostlogisticsWebService(object):
             "item": item,
         }
 
-    def get_access_token(self, env):
+    @classmethod
+    def _request_access_token(cls, env):
         icp = env['ir.config_parameter'].sudo()
         client_id = icp.get_param('postlogistics.oauth.client_id')
         client_secret = icp.get_param('postlogistics.oauth.client_secret')
@@ -343,7 +358,7 @@ class PostlogisticsWebService(object):
                   'Please verify postlogistics client id and secret in:\n'
                   'Configuration -> Postlogistics'))
 
-        response_token = requests.post(
+        response = requests.post(
             url=authentication_url,
             headers={'content-type': 'application/x-www-form-urlencoded'},
             data={
@@ -354,16 +369,32 @@ class PostlogisticsWebService(object):
             },
             timeout=60,
         )
-        response_token_dict = json.loads(response_token.content.decode("utf-8"))
-        access_token = response_token_dict['access_token']
+        return response.json()
 
-        if not (access_token):
-            raise exceptions.UserError(
-                _('Authorization Required\n\n'
-                  'Please verify postlogistics client id and secret in:\n'
-                  'Configuration -> Postlogistics'))
+    @classmethod
+    def get_access_token(cls, env):
+        """Threadsafe access to token"""
 
-        return access_token
+        with cls._lock:
+            now = datetime.now()
+
+            if cls.access_token:
+                # keep a safe margin on the expiration
+                expiry = cls.access_token_expiry - timedelta(seconds=5)
+                if now < expiry:
+                    return cls.access_token
+
+            response = cls._request_access_token(env)
+            cls.access_token = response['access_token']
+
+            if not (cls.access_token):
+                raise exceptions.UserError(
+                    _('Authorization Required\n\n'
+                      'Please verify postlogistics client id and secret in:\n'
+                      'Configuration -> Postlogistics'))
+
+            cls.access_token_expiry = now + timedelta(seconds=response["expires_in"])
+            return cls.access_token
 
     def generate_label(self, picking, packages, user_lang=None):
         """ Generate a label for a picking
