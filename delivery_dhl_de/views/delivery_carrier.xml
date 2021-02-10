@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="delivery_carrier_dhl_de_inherit_view" model="ir.ui.view">
+        <field name="name">delivery.carrier.dhl_de.inherit.view</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <page name="destination" position="after">
+                <page
+                    name="dhl_de"
+                    string="DHL DE"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_de')]}"
+                >
+                    <group>
+                        <group string="Credentials">
+                            <field
+                                name="dhl_de_endpoint_url"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_de')]}"
+                            />
+                            <field
+                                name="dhl_de_user_id"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_de')]}"
+                            />
+                            <field
+                                name="dhl_de_password"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_de')]}"
+                            />
+                            <field name="dhl_de_ekp_no" attrs="{'required': [('delivery_type', '=', 'dhl_de')]}" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
