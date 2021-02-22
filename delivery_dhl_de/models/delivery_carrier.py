@@ -15,7 +15,6 @@ from requests.auth import HTTPBasicAuth
 import binascii
 from re import findall
 
-
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -340,4 +339,3 @@ class DeliveryCarrier(models.Model):
             if response_code != "0":
                 return False, error
         return True, ''
-
