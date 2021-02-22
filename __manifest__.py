@@ -11,6 +11,8 @@
     "website": "http://www.braintec-group.com",
     "data": [
             'views/delivery_carrier.xml',
+            'views/stock_picking_views.xml',
+            'views/view_res_partner.xml',
     ],
     "installable": True,
     "auto_install": False,
