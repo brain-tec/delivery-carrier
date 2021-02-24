@@ -105,6 +105,14 @@ class DeliveryCarrier(models.Model):
             if total_bulk_weight:
                 shipment_request['ShipmentOrder'] = srm._set_ShipmentOrder(picking, self.dhl_de_services_name,
                                                                            account_number, total_bulk_weight)
+            shipments = []
+            for package in picking.package_ids:
+                weight = self._dhl_de_convert_weight(package.shipping_weight, self.dhl_de_package_weight_unit)
+                shipments.append(srm._set_ShipmentOrder(picking, self.dhl_de_services_name, account_number,
+                                                        weight))
+            if shipments:
+                shipment_request['ShipmentOrder'] = shipments
+
 
             if self.dhl_de_label_format == 'PDF':
                 shipment_request['labelResponseType'] = 'B64'
