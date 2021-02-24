@@ -42,14 +42,11 @@ class DeliveryCarrier(models.Model):
                                       ],
                                      string="Product Name",
                                      help="Shipping Services those are accepted by DHL.")
-    dhl_de_package_weight_unit = fields.Selection([('L', 'Pounds'),
-                                                ('K', 'Kilograms')],
-                                               default='K',
-                                               string="Package Weight Unit")
+    dhl_de_package_weight_unit = fields.Selection([('L', 'Pounds'), ('K', 'Kilograms')], default='K',
+                                                  string="Package Weight Unit")
     dhl_de_default_packaging_id = fields.Many2one('product.packaging', string='DHL Default Packaging Type')
-    dhl_de_label_format = fields.Selection([('PDF', 'PDF'),
-        ('ZPL2', 'ZPL2'),
-    ], string="Label Image Format", default='PDF')
+    dhl_de_label_format = fields.Selection([('PDF', 'PDF'), ('ZPL2', 'ZPL2'),], string="Label Image Format",
+                                           default='PDF')
     export_type = fields.Selection([("OTHER", "OTHER"),
                                     ("PRESENT", "PRESENT"),
                                     ("COMMERCIAL_SAMPLE", "COMMERCIAL_SAMPLE"),
@@ -93,7 +90,6 @@ class DeliveryCarrier(models.Model):
         Packages are mandatory in this case
         """
         response = []
-        context = self._context
         for picking in pickings:
             shipment_request = {}
             srm = DHLProvider(self.log_xml, http_user=self.dhl_de_http_userid,
@@ -139,7 +135,6 @@ class DeliveryCarrier(models.Model):
                 'tracking_number': ",".join(final_tracking_no)}
             response += [shipping_data]
         return response
-
 
     def _dhl_de_convert_weight(self, weight, unit):
         weight_uom_id = self.env['product.template']._get_weight_uom_id_from_ir_config_parameter()
