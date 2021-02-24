@@ -10,7 +10,7 @@ import os
 from defusedxml.lxml import fromstring
 import time
 from lxml import etree
-from zeep import Client, Plugin
+from zeep import Client
 from requests.auth import HTTPBasicAuth
 from requests import Session
 from zeep.transports import Transport

@@ -5,7 +5,7 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
-from odoo import fields, models, api, _
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
