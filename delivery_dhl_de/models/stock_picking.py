@@ -55,9 +55,7 @@ class StockPicking(models.Model):
             for sp in self:
                 carrier = sp.carrier_id
                 if carrier and carrier.allows_dhl_validation() and carrier.delivery_type == 'dhl_de':
-                    is_address_valid, feedback_validation_address_dhl = sp.carrier_id.dhl_validation(
-                        sp.picking_type_id.warehouse_id.partner_id, sp.partner_id
-                    )
+                    is_address_valid, feedback_validation_address_dhl = sp.carrier_id.dhl_validation(sp)
                     if not is_address_valid:
                         invalid_ids.append(sp.id)
                         new_vals = vals.copy()
