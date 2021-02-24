@@ -6,6 +6,8 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 from odoo import fields, models, api, _
+
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 

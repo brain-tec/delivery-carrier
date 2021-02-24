@@ -15,44 +15,27 @@ from requests.auth import HTTPBasicAuth
 from requests import Session
 from zeep.transports import Transport
 
+
 class DHLProvider():
 
-    def __init__(self, debug_logger, http_user, http_password, request_type='createShipmentOrder',
-                 prod_environment=False):
+    def __init__(self, debug_logger, http_user, http_password, prod_environment=False):
         self.debug_logger = debug_logger
-        wsdl_url = 'https://cig.dhl.de/cig-wsdls/com/dpdhl/wsdl/geschaeftskundenversand-api/3.1/geschaeftskundenversand-api-3.1.wsdl'
         if not prod_environment:
             self.url = 'https://cig.dhl.de/services/production/soap'
         else:
             self.url = 'https://cig.dhl.de/services/sandbox/soap'
+        self.client = self._set_client(http_user, http_password)
+        self.cis_factory = self.client.type_factory('ns0')
+        self.bcs_factory = self.client.type_factory('ns1')
 
-        if request_type == "createShipmentOrder":
-            self.client = self._set_client(wsdl_url, http_user, http_password)
-            self.cis_factory = self.client.type_factory('ns0')
-            self.bcs_factory = self.client.type_factory('ns1')
-        elif request_type =="validateShipment":
-            self.client = self._set_client(wsdl_url, http_user, http_password)
-            self.cis_factory = self.client.type_factory('ns0')
-            self.bcs_factory = self.client.type_factory('ns1')
-
-
-    def _set_client(self, wsdl, http_user, http_password):
-        url = 'https://cig.dhl.de/cig-wsdls/com/dpdhl/wsdl/geschaeftskundenversand-api/3.1/geschaeftskundenversand-api-3.1.wsdl'
-        url = 'https://cig.dhl.de/cig-wsdls/com/dpdhl/wsdl/geschaeftskundenversand-api/3.0/geschaeftskundenversand-api-3.0.wsdl'
+    def _set_client(self, http_user, http_password):
         session = Session()
         session.auth = HTTPBasicAuth(http_user, http_password)
         transport = Transport(session=session)
-        # transport.binding_classes = binding_classes
         wsdl = '../dhl_de_api/geschaeftskundenversand-api-3.1.wsdl'
         wsdl_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), wsdl)
         client = Client('file:///%s' % wsdl_path.lstrip('/'), transport=transport)
-        #client = Client(url, transport=transport)
-        #client.set_ns_prefix('soapenv', "http://schemas.xmlsoap.org/soap/envelope/")
-
         return client
-
-    def _set_CreateShipmentOrderRequest(self):
-        element = self.client.get_element('ns1:CreateShipmentOrderRequest')
 
     def _set_version(self):
         result = self.client.get_element('ns1:Version')(3, 1)
@@ -61,11 +44,6 @@ class DHLProvider():
     def _set_authentication(self, site_id, password):
         self.user = site_id
         self.signature = password
-        authentication = self.cis_factory.AuthentificationType()
-        authentication['user'] = site_id
-        authentication['signature'] = password
-        authentication = {'Authentification' : authentication}
-        #self.client.set_default_soapheaders(authentication)
 
     def _set_ShipmentOrder(self, picking, dhl_product, ekp_number, weight):
         shipmentOrder  =  self.bcs_factory.ShipmentOrderType()
@@ -142,24 +120,18 @@ class DHLProvider():
         receiver.Communication = communication
         return receiver
 
-    def _set_LabelResponseType(self, label_format):
-        label = None
-        if label_format == 'PDF':
-            label = self.client.get_element('ns1:labelResponseType')('B64')
-        else:
-            label = self.client.get_element('ns1:labelResponseType')('ZPL2')
-        return label
-
-        return receiver
-
-    def _process_shipment(self, shipment_request):
-        ShipmentRequest  = self.client.get_element('ns1:CreateShipmentOrderRequest')
-        document = etree.Element('root')
-        ShipmentRequest.render(document, shipment_request)
+    def _process_shipment(self, shipment_request, request_type):
+        if request_type == "createShipmentOrder" :
+            service_name = self.client.service.createShipmentOrder._op_name
+            response_element_name = "ns1:CreateShipmentOrderResponse"
+            find_response_element_name = "*//bcs:CreateShipmentOrderResponse"
+        elif request_type == 'validateShipment' :
+            service_name = self.client.service.validateShipment._op_name
+            response_element_name = "ns1:ValidateShipmentResponse"
+            find_response_element_name = "*//bcs:ValidateShipmentResponse"
         soapheader = self.client.get_element("ns0:Authentification")(self.user, self.signature)
-        document = self.client.create_message(self.client.service, self.client.service.createShipmentOrder._op_name
-                                              , _soapheaders=[soapheader], **shipment_request)
-        #self.client.service.createShipmentOrder(**shipment_request, _soapheaders=[soapheader])
+        document = self.client.create_message(self.client.service, service_name, _soapheaders=[soapheader],
+                                              **shipment_request)
         request_to_send = etree.tostring(document, xml_declaration=False, encoding='utf-8')
         headers = {'Content-Type': 'text/xml'}
         response = self.client.transport.post(self.url, request_to_send, headers=headers)
@@ -169,7 +141,8 @@ class DHLProvider():
         if response.status_code != 200 :
             raise Warning(response.content)
         response_element_xml = fromstring(response.content.decode(response.encoding))
-        response_element = response_element_xml.find("*//bcs:CreateShipmentOrderResponse", response_element_xml.nsmap)
-        Response = self.client.get_element("ns1:CreateShipmentOrderResponse")
-        response_zeep = Response.type.parse_xmlelement(response_element)
+        shipment_response_element = response_element_xml.find(find_response_element_name,
+                                                              response_element_xml.nsmap)
+        Response = self.client.get_element(response_element_name)
+        response_zeep = Response.type.parse_xmlelement(shipment_response_element)
         return response_zeep
