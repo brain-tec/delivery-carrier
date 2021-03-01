@@ -3,7 +3,7 @@
 import base64
 from operator import attrgetter
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models, registry
 
 from ..postlogistics.web_service import PostlogisticsWebService
 
@@ -212,24 +212,27 @@ class StockPicking(models.Model):
         success_label_results = [
             label for label in label_results if "errors" not in label
         ]
-        failed_label_results = [label for label in label_results if "errors" in label]
 
-        # Case when there is a failed label, rollback odoo data
-        if failed_label_results:
-            self._cr.rollback()
+        with api.Environment.manage():
+            with registry(self.env.cr.dbname).cursor() as new_cr:
+                failed_label_results = [label for label in label_results if "errors" in label]
 
-        labels = self.write_tracking_number_label(success_label_results, packages)
+                # Case when there is a failed label, rollback odoo data
+                if failed_label_results:
+                    new_cr.rollback()
 
-        if not skip_attach_file:
-            for label in labels:
-                self.attach_shipping_label(label)
+                labels = self.write_tracking_number_label(success_label_results, packages)
 
-        if failed_label_results:
-            # Commit the change to save the changes,
-            # This ensures the label pushed recored correctly in Odoo
-            self._cr.commit()
-            error_message = "\n".join(label["errors"] for label in failed_label_results)
-            raise exceptions.Warning(error_message)
+                if not skip_attach_file:
+                    for label in labels:
+                        self.attach_shipping_label(label)
+
+                if failed_label_results:
+                    # Commit the change to save the changes,
+                    # This ensures the label pushed recored correctly in Odoo
+                    new_cr.commit()
+                    error_message = "\n".join(label["errors"] for label in failed_label_results)
+                    raise exceptions.Warning(error_message)
         return labels
 
     def generate_postlogistics_shipping_labels(self, package_ids=None):
