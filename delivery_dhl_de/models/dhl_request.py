@@ -20,7 +20,7 @@ class DHLProvider():
 
     def __init__(self, debug_logger, http_user, http_password, prod_environment=False):
         self.debug_logger = debug_logger
-        if not prod_environment:
+        if prod_environment:
             self.url = 'https://cig.dhl.de/services/production/soap'
         else:
             self.url = 'https://cig.dhl.de/services/sandbox/soap'
