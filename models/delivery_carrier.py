@@ -5,7 +5,7 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 from odoo.addons.delivery_dhl_de.models.dhl_request import DHLProvider
 import binascii
