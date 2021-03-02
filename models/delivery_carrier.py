@@ -138,8 +138,13 @@ class DeliveryCarrier(models.Model):
                     ('DHL Label-%s.%s' % (tracking_no, output_format), binary_data)])
                 if tracking_no:
                     final_tracking_no.append(tracking_no)
+            delivery_price = 0.0
+            if picking.sale_id:
+                delivery_line = picking.sale_id.order_line.filtered(lambda l: l.is_delivery)
+                if delivery_line:
+                    delivery_price = delivery_line[0].price_subtotal
             shipping_data = {
-                'exact_price': picking.sale_id and picking.sale_id.delivery_price or 0.0,
+                'exact_price': delivery_price,
                 'tracking_number': ",".join(final_tracking_no)}
             response += [shipping_data]
         return response
