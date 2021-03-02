@@ -22,8 +22,6 @@ class DeliveryCarrier(models.Model):
 
     delivery_type = fields.Selection(selection_add=[("dhl_de", "DHL DE")])
 
-    dhl_de_endpoint_url = fields.Char(string="Endpoint URL", default="https://cig.dhl.de/services/production/soap",
-                                      required=True)
     dhl_de_user_id = fields.Char("DHL UserId", copy=False, help="When use the sandbox account developer id use as "
                                                                 "the userId.When use the live account application "
                                                                 "id use as the userId.")
@@ -55,18 +53,7 @@ class DeliveryCarrier(models.Model):
                                    help="Depends on chosen product only mandatory for international and non EU "
                                         "shipments.")
 
-    @api.onchange("prod_environment")
-    def onchange_prod_environment(self):
-        """
-        Auto change the end point url following the environment
-        - Prod: https://cig.dhl.de/services/production/soap"
-        - Test: https://cig.dhl.de/services/sandbox/soap
-        """
-        for carrier in self:
-            if carrier.prod_environment:
-                carrier.dhl_de_endpoint_url = "https://cig.dhl.de/services/production/soap"
-            else:
-                carrier.dhl_de_endpoint_url = "https://cig.dhl.de/services/sandbox/soap"
+
 
     def dhl_de_get_tracking_link(self, picking):
         raise UserError(_("This feature is under development"))
