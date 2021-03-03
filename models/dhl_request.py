@@ -133,7 +133,9 @@ class DHLProvider():
         document = self.client.create_message(self.client.service, service_name, _soapheaders=[soapheader],
                                               **shipment_request)
         request_to_send = etree.tostring(document, xml_declaration=False, encoding='utf-8')
-        headers = {'Content-Type': 'text/xml'}
+        headers = {"Content-Type": "application/soap+xml;charset=UTF-8",
+                   "SOAPAction": "urn:%s"%request_type,
+                   'Content-Length': str(len(request_to_send)), }
         response = self.client.transport.post(self.url, request_to_send, headers=headers)
         if self.debug_logger:
             self.debug_logger(request_to_send, 'dhl_shipment_request')
