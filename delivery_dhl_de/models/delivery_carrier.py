@@ -40,6 +40,10 @@ class DeliveryCarrier(models.Model):
                                       ],
                                      string="Product Name",
                                      help="Shipping Services those are accepted by DHL.")
+    dhl_de_participation_number = fields.Char("Participation No.", help="The participation number is the last two "
+                                                                        "characters of the accounting number for "
+                                                                        "the referring products.")
+    dhl_de_account_number = fields.Char("Account Number", compute="_compute_dhl_de_account_number")
     dhl_de_package_weight_unit = fields.Selection([('L', 'Pounds'), ('K', 'Kilograms')], default='K',
                                                   string="Package Weight Unit")
     dhl_de_default_packaging_id = fields.Many2one('product.packaging', string='DHL Default Packaging Type')
@@ -53,7 +57,13 @@ class DeliveryCarrier(models.Model):
                                    help="Depends on chosen product only mandatory for international and non EU "
                                         "shipments.")
 
-
+    def _compute_dhl_de_account_number(self):
+        for record in self:
+            account_number = ''
+            if record.delivery_type == 'dhl_de':
+                account_number = record.dhl_de_ekp_no + self.dhl_de_services_name[1:3] + \
+                                 record.dhl_de_participation_number
+            record.dhl_de_account_number = account_number
 
     def dhl_de_get_tracking_link(self, picking):
         raise UserError(_("This feature is under development"))
@@ -87,7 +97,7 @@ class DeliveryCarrier(models.Model):
             shipment_request['Version'] = srm._set_version()
             srm._set_authentication(site_id, password)
 
-            account_number = self.dhl_de_ekp_no + self.dhl_de_services_name[1:3] + "01"
+            account_number = self.dhl_de_account_number
             total_bulk_weight = self._dhl_de_convert_weight(picking.weight_bulk, self.dhl_de_package_weight_unit)
             if total_bulk_weight:
                 shipment_request['ShipmentOrder'] = srm._set_ShipmentOrder(picking, self.dhl_de_services_name,
@@ -186,7 +196,7 @@ class DeliveryCarrier(models.Model):
         shipment_request['Version'] = srm._set_version()
         srm._set_authentication(site_id, password)
 
-        account_number = self.dhl_de_ekp_no + self.dhl_de_services_name[1:3] + "01"
+        account_number = self.dhl_de_account_number
         shipment_request['ShipmentOrder'] = srm._set_ShipmentOrder(picking, self.dhl_de_services_name,
                                                                        account_number, 5)
 
