@@ -1766,14 +1766,14 @@
 		    <xs:attribute name="type" use="required">
 			      <xs:annotation>
 				        <xs:documentation>
-					
+
 										Type of shipment handling. There are the following types are allowed:
 										a: Remove content, return box;
 										b: Remove content, pick up and dispose cardboard packaging;
 										c: Handover parcel/box to customer – no disposal of cardboar.d/box;
 										d: Remove bag from of cooling unit and handover to customer;
 										e: Remove content, apply return label und seal box, return box
-										
+
 				</xs:documentation>
 			      </xs:annotation>
 			      <xs:simpleType>

@@ -9,6 +9,6 @@ from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
-    street_no = fields.Char('Street No.')
+    street_no = fields.Char("Street No.")
