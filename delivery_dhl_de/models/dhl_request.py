@@ -99,6 +99,8 @@ class DHLProvider:
         shipper.Communication = communication
         if partner.phone:
             communication.phone = partner.phone
+        if partner.email:
+            communication.email = partner.email
         return shipper
 
     def _set_name(self, partner):
