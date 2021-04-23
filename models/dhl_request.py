@@ -123,6 +123,8 @@ class DHLProvider:
         address.city = partner.city
         address.Origin = country
         country.countryISOCode = partner.country_id and partner.country_id.code or ""
+        if partner.email:
+            communication.email = partner.email
         receiver.Communication = communication
         return receiver
 
