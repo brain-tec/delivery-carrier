@@ -172,7 +172,9 @@ class PostlogisticsWebService(object):
         franking_license = picking.carrier_id.postlogistics_license_id
         return franking_license.number
 
-    def _prepare_attributes(self, picking, pack=None, pack_num=None, pack_total=None):
+    def _prepare_attributes(
+        self, picking, pack=None, pack_num=None, pack_total=None, pack_weight=None
+    ):
         packaging = (
             pack
             and pack.packaging_id
@@ -180,7 +182,10 @@ class PostlogisticsWebService(object):
         )
         services = packaging._get_packaging_codes()
 
-        total_weight = pack.shipping_weight if pack else picking.shipping_weight
+        if pack_weight:
+            total_weight = pack_weight
+        else:
+            total_weight = pack.shipping_weight if pack else picking.shipping_weight
         total_weight *= 1000
 
         if not services:
@@ -248,6 +253,11 @@ class PostlogisticsWebService(object):
         return [{"Type": "NN_BETRAG", "Value": amount}]
 
     def _get_item_additional_data(self, picking, package=None):
+        if package and not package.packaging_id:
+            raise exceptions.UserError(
+                _("The package %s must have a package type.") % package.name
+            )
+
         result = []
         packaging_codes = package and package.packaging_id._get_packaging_codes() or []
 
@@ -478,7 +488,12 @@ class PostlogisticsWebService(object):
             if response.status_code != 200:
                 res["success"] = False
                 res["errors"] = response.content.decode("utf-8")
-                return res
+                _logger.warning(
+                    "Shipping label could not be generated.\n"
+                    "Request: %s\n"
+                    "Response: %s" % (json.dumps(data), res["errors"])
+                )
+                return [res]
 
             response_dict = json.loads(response.content.decode("utf-8"))
 

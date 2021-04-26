@@ -27,6 +27,7 @@ class TestPostlogistics(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.env["postlogistics.license"].create({"name": "TEST", "number": LICENSE})
         Product = cls.env["product.product"]
         partner_id = cls.env.ref("delivery_postlogistics.partner_postlogistics").id
@@ -54,7 +55,7 @@ class TestPostlogistics(common.SavepointCase):
             {
                 "name": "PRI-TEST",
                 "package_carrier_type": "postlogistics",
-                "shipper_package_code": "PRI",
+                "shipper_package_code": "PRI, BLN",
             }
         )
 

@@ -17,9 +17,9 @@ class StockQuantPackage(models.Model):
     @api.returns("stock.picking")
     def _get_origin_pickings(self):
         self.ensure_one()
-        operation_model = self.env["stock.pack.operation"]
-        operations = operation_model.search([("result_package_id", "=", self.id)])
-        return operations.mapped("picking_id")
+        move_line_model = self.env["stock.move.line"]
+        move_line = move_line_model.search([("package_id", "=", self.id)])
+        return move_line.mapped("picking_id")
 
     def postlogistics_cod_amount(self):
         """ Return the Postlogistic Cash on Delivery amount of a package
