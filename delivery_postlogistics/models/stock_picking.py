@@ -3,7 +3,7 @@
 import base64
 from operator import attrgetter
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 from ..postlogistics.web_service import PostlogisticsWebService
 
@@ -26,24 +26,10 @@ class StockPicking(models.Model):
         "Mobile", help="For notify delivery by telephone (ZAW3213)"
     )
 
-    @api.onchange("carrier_id")
-    def onchange_carrier_id(self):
-        """ Inherit this method in your module """
-        if not self.carrier_id:
-            return
-        # This can look useless as the field carrier_code and
-        # carrier_type are related field. But it's needed to fill
-        # this field for using this fields in the view. Indeed the
-        # module that depend of delivery base can hide some field
-        # depending of the type or the code
-        carrier = self.carrier_id
-        self.update({"delivery_type": carrier.delivery_type})
-
     def _get_packages_from_picking(self):
         """ Get all the packages from the picking """
         self.ensure_one()
         operation_obj = self.env["stock.move.line"]
-        packages = self.env["stock.quant.package"].browse()
         operations = operation_obj.search(
             [
                 "|",
@@ -52,13 +38,11 @@ class StockPicking(models.Model):
                 ("picking_id", "=", self.id),
             ]
         )
-        package_ids = []
+        package_ids = set()
         for operation in operations:
             # Take the destination package. If empty, the package is
             # moved so take the source one.
-            package_ids.append(
-                operation.result_package_id.id or operation.package_id.id
-            )
+            package_ids.add(operation.result_package_id.id or operation.package_id.id)
 
         packages = self.env["stock.quant.package"].browse(package_ids)
         return packages
@@ -169,22 +153,6 @@ class StockPicking(models.Model):
         Note we can receive multiple labels for a same package
         """
         zpl_patch_string = self.carrier_id.zpl_patch_string
-
-        def info_from_label(label):
-            tracking_number = label["tracking_number"]
-            data = base64.b64decode(label["binary"])
-            if label["file_type"] == "zpl2":
-                data = base64.b64encode(
-                    base64.b64decode(data)
-                    .decode("cp437")
-                    .replace("^XA", "^XA^CI28")
-                    .encode("utf-8")
-                )
-            return {
-                "file": data,
-                "file_type": label["file_type"],
-                "name": tracking_number + "." + label["file_type"],
-            }
 
         labels = []
         if not packages:
