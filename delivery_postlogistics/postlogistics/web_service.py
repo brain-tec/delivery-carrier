@@ -379,10 +379,11 @@ class PostlogisticsWebService(object):
                 )
             )
 
-        client_id = delivery_carrier.postlogistics_client_id
-        client_secret = delivery_carrier.postlogistics_client_secret
+        delivery_carrier_sudo = delivery_carrier.sudo()
+        client_id = delivery_carrier_sudo.postlogistics_client_id
+        client_secret = delivery_carrier_sudo.postlogistics_client_secret
         authentication_url = urllib.parse.urljoin(
-            delivery_carrier.postlogistics_endpoint_url or "", AUTH_PATH
+            delivery_carrier_sudo.postlogistics_endpoint_url or "", AUTH_PATH
         )
 
         if not (client_id and client_secret):
