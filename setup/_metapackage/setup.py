@@ -9,9 +9,11 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-base_delivery_carrier_label',
+        'odoo13-addon-delivery_auto_refresh',
         'odoo13-addon-delivery_carrier_info',
         'odoo13-addon-delivery_carrier_partner',
         'odoo13-addon-delivery_carrier_pricelist',
+        'odoo13-addon-delivery_carrier_service_level',
         'odoo13-addon-delivery_free_fee_removal',
         'odoo13-addon-delivery_multi_destination',
         'odoo13-addon-delivery_package_fee',
