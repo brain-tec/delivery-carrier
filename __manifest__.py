@@ -13,6 +13,7 @@
         "views/delivery_carrier.xml",
         "views/stock_picking_views.xml",
         "views/view_res_partner.xml",
+        "views/sale_order_views.xml",
     ],
     "external_dependencies": {"python": ["zeep", "defusedxml"]},
     "installable": True,

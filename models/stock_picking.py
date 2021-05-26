@@ -25,6 +25,7 @@ class StockPicking(models.Model):
     feedback_validation_address_dhl = fields.Char(
         "Feedback from DHL about the address", readonly=True
     )
+    dhl_delivery_address_validation = fields.Boolean()
 
     def _compute_dhl_de_picking(self):
         for record in self:
@@ -68,7 +69,7 @@ class StockPicking(models.Model):
                     and carrier.delivery_type == "dhl_de"
                 ):
                     (is_address_valid, validation_dhl,) = sp.carrier_id.dhl_validation(
-                        sp
+                        sp, None
                     )
                     if not is_address_valid:
                         invalid_ids.append(sp.id)

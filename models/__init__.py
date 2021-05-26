@@ -3,3 +3,4 @@ from . import product_packaging
 from . import stock_picking
 from . import dhl_request
 from . import res_partner
+from . import sale_order
