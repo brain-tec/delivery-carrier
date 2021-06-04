@@ -267,7 +267,7 @@ class DeliveryCarrier(models.Model):
         self.ensure_one()
         return "dhl_de" in (self.delivery_type or "").lower()
 
-    def dhl_validation(self, picking):
+    def dhl_validation(self, picking, order):
         self.ensure_one()
 
         shipment_request = {}
@@ -284,7 +284,7 @@ class DeliveryCarrier(models.Model):
 
         account_number = self.dhl_de_account_number
         shipment_request["ShipmentOrder"] = srm._set_ShipmentOrder(
-            picking, self.dhl_de_services_name, account_number, 5
+            picking, order, self.dhl_de_services_name, account_number, 5
         )
 
         dhl_response = srm._process_shipment(shipment_request, "validateShipment")

@@ -45,14 +45,17 @@ class DHLProvider:
         self.user = site_id
         self.signature = password
 
-    def _set_ShipmentOrder(self, picking, dhl_product, ekp_number, weight):
+    def _set_ShipmentOrder(self, picking, order, dhl_product, ekp_number, weight):
         shipmentOrder = self.bcs_factory.ShipmentOrderType()
         ShipmentDetails = self.bcs_factory.ShipmentDetailsTypeType()
-        picking_company_id = (
-            picking.picking_type_id
-            and picking.picking_type_id.warehouse_id
-            and picking.picking_type_id.warehouse_id.partner_id
-        )
+        if picking:
+            shipper_partner_id = picking.picking_type_id.warehouse_id.partner_id
+            receiver_partner_id = picking.partner_id
+            shipment_carrier_id = picking.carrier_id
+        elif order:
+            shipper_partner_id = order.warehouse_id.partner_id
+            receiver_partner_id = order.partner_shipping_id
+            shipment_carrier_id = order.carrier_id
         Shipment = {"ShipmentDetails": ShipmentDetails}
         shipmentOrder.sequenceNumber = "01"
         shipmentOrder.Shipment = Shipment
@@ -60,11 +63,11 @@ class DHLProvider:
         ShipmentDetails.accountNumber = ekp_number
         ShipmentDetails.shipmentDate = time.strftime("%Y-%m-%d")
         ShipmentDetails.ShipmentItem = self._set_shipmentItem(weight)
-        ShipmentDetails.Notification = self._set_Notificaiton(picking_company_id)
+        ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
         Shipment.update(
             {
-                "Shipper": self._set_shipper(picking_company_id, picking.carrier_id),
-                "Receiver": self._set_receiver(picking.partner_id, picking.carrier_id),
+                "Shipper": self._set_shipper(shipper_partner_id, shipment_carrier_id),
+                "Receiver": self._set_receiver(receiver_partner_id, shipment_carrier_id),
             }
         )
         return shipmentOrder
