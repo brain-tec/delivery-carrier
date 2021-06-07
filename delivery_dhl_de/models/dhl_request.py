@@ -67,7 +67,9 @@ class DHLProvider:
         Shipment.update(
             {
                 "Shipper": self._set_shipper(shipper_partner_id, shipment_carrier_id),
-                "Receiver": self._set_receiver(receiver_partner_id, shipment_carrier_id),
+                "Receiver": self._set_receiver(
+                    receiver_partner_id, shipment_carrier_id
+                ),
             }
         )
         return shipmentOrder
