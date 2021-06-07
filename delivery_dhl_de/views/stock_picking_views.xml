@@ -36,6 +36,9 @@
                 >{'invisible': [('show_check_availability', '=', False),
                                                        ('has_errors_address_dhl', '=', False)]}</attribute>
             </xpath>
+            <field name="group_id" position="after">
+                <field name="dhl_delivery_address_validation" />
+            </field>
         </field>
     </record>
 </odoo>
