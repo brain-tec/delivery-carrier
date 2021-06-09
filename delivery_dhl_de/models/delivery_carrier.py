@@ -145,6 +145,7 @@ class DeliveryCarrier(models.Model):
             if total_bulk_weight:
                 shipment_request["ShipmentOrder"] = srm._set_ShipmentOrder(
                     picking,
+                    False,
                     self.dhl_de_services_name,
                     account_number,
                     total_bulk_weight,
@@ -156,7 +157,7 @@ class DeliveryCarrier(models.Model):
                 )
                 shipments.append(
                     srm._set_ShipmentOrder(
-                        picking, self.dhl_de_services_name, account_number, weight
+                        picking, False, self.dhl_de_services_name, account_number, weight
                     )
                 )
             if shipments:
