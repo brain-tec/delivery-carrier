@@ -104,7 +104,11 @@ class DeliveryCarrier(models.Model):
             record.dhl_de_account_number = account_number
 
     def dhl_de_get_tracking_link(self, picking):
-        raise UserError(_("This feature is under development"))
+        if not picking.carrier_tracking_ref:
+            raise(_(
+                'Picking {} is missing a tracking reference'.format(picking.name)
+            ))
+        return 'https://www.dhl.com/de-de/home/tracking.html?tracking-id={}'.format(picking.carrier_tracking_ref)
 
     def dhl_de_cancel_shipment(self, pickings):
         raise UserError(_("This feature is under development"))
