@@ -116,6 +116,7 @@ class DHLProvider:
         address = self.cis_factory.ReceiverNativeAddressType()
         country = self.cis_factory.CountryType()
         communication = self.cis_factory.CommunicationType()
+        packstation = {}
         receiver.name1 = partner.name
         receiver.Address = address
         street, street_no = carrier.get_street_and_number_from_partner(partner)
@@ -128,6 +129,19 @@ class DHLProvider:
         address.city = partner.city
         address.Origin = country
         country.countryISOCode = partner.country_id and partner.country_id.code or ""
+        if any('packstation' in s for s in [street_no.lower(), partner.street2.lower()]):
+            address.streetName = 'Packstation'
+            if len(street.split(' ')) > 1:
+                packstation['packstationNumber'] = street.split(' ')[0]
+                packstation['postNumber'] = street.split(' ')[1]
+                address.streetNumber = street.split(' ')[0]
+                address.name2 = street.split(' ')[1]
+            else:
+                packstation['packstationNumber'] = street_no
+                packstation['postNumber'] = street
+                address.streetNumber = street_no
+                address.name2 = street
+            receiver.Packstation = packstation
         if partner.email:
             communication.email = partner.email
         receiver.Communication = communication
