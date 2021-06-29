@@ -129,8 +129,8 @@ class DHLProvider:
         address.city = partner.city
         address.Origin = country
         country.countryISOCode = partner.country_id and partner.country_id.code or ""
-        street2 = partner.street2 or ""
-        if any('packstation' in s for s in [street_no.lower(), street2.lower()]):
+        street_name = partner.street_name or ""
+        if any('packstation' in s for s in [street_no.lower(), street_name.lower()]):
             address.streetName = 'Packstation'
             if len(street.split(' ')) > 1:
                 packstation['packstationNumber'] = street.split(' ')[0]
@@ -139,9 +139,9 @@ class DHLProvider:
                 address.name2 = street.split(' ')[1]
             else:
                 packstation['packstationNumber'] = street_no
-                packstation['postNumber'] = street
+                packstation['postNumber'] = partner.street2 or ""
                 address.streetNumber = street_no
-                address.name2 = street
+                address.name2 = partner.street2
             receiver.Packstation = packstation
         if partner.email:
             communication.email = partner.email
