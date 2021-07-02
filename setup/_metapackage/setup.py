@@ -9,9 +9,11 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-base_delivery_carrier_label',
+        'odoo14-addon-delivery_carrier_city',
         'odoo14-addon-delivery_carrier_info',
         'odoo14-addon-delivery_package_fee',
         'odoo14-addon-delivery_state',
+        'odoo14-addon-stock_picking_delivery_link',
     ],
     classifiers=[
         'Programming Language :: Python',
