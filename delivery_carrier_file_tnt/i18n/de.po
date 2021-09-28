@@ -10,14 +10,19 @@ msgstr ""
 "PO-Revision-Date: 2015-01-05 14:10+0100\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: de\n"
 
 #. module: delivery_carrier_file_tnt
-#: view:delivery.carrier.file:0
+#: model:ir.model.fields,field_description:delivery_carrier_file_tnt.field_delivery_carrier_file_tnt_account
+msgid "TNT Account"
+msgstr "TNT Konto"
+
+#. module: delivery_carrier_file_tnt
+#: model:ir.ui.view,arch_db:delivery_carrier_file_tnt.view_delivery_carrier_file_form_tnt
 msgid "TNT Express Shipper Options"
 msgstr "TNT Express Versand Optionen"
 
@@ -25,8 +30,3 @@ msgstr "TNT Express Versand Optionen"
 #: model:ir.model,name:delivery_carrier_file_tnt.model_delivery_carrier_file
 msgid "delivery.carrier.file"
 msgstr "delivery.carrier.file"
-
-#. module: delivery_carrier_file_tnt
-#: field:delivery.carrier.file,tnt_account:0
-msgid "TNT Account"
-msgstr "TNT Konto"
