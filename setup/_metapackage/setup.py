@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo13-addon-delivery_carrier_pricelist',
         'odoo13-addon-delivery_carrier_service_level',
         'odoo13-addon-delivery_free_fee_removal',
+        'odoo13-addon-delivery_local_pickup',
         'odoo13-addon-delivery_multi_destination',
         'odoo13-addon-delivery_package_fee',
         'odoo13-addon-delivery_package_number',
@@ -37,5 +38,6 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Odoo',
+        'Framework :: Odoo :: 13.0',
     ]
 )
