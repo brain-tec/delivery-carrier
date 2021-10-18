@@ -105,10 +105,10 @@ class DeliveryCarrier(models.Model):
 
     def dhl_de_get_tracking_link(self, picking):
         if not picking.carrier_tracking_ref:
-            raise(_(
-                'Picking {} is missing a tracking reference'.format(picking.name)
-            ))
-        return 'https://www.dhl.com/de-de/home/tracking.html?tracking-id={}'.format(picking.carrier_tracking_ref)
+            raise (_("Picking {} is missing a tracking reference".format(picking.name)))
+        return "https://www.dhl.com/de-de/home/tracking.html?tracking-id={}".format(
+            picking.carrier_tracking_ref
+        )
 
     def dhl_de_cancel_shipment(self, pickings):
         raise UserError(_("This feature is under development"))
@@ -161,7 +161,11 @@ class DeliveryCarrier(models.Model):
                 )
                 shipments.append(
                     srm._set_ShipmentOrder(
-                        picking, False, self.dhl_de_services_name, account_number, weight
+                        picking,
+                        False,
+                        self.dhl_de_services_name,
+                        account_number,
+                        weight,
                     )
                 )
             if shipments:

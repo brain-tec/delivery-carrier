@@ -8,9 +8,8 @@
 import os
 import time
 
-from lxml import etree
-
 from defusedxml.lxml import fromstring
+from lxml import etree
 from requests import Session
 from requests.auth import HTTPBasicAuth
 from zeep import Client
@@ -130,16 +129,16 @@ class DHLProvider:
         address.Origin = country
         country.countryISOCode = partner.country_id and partner.country_id.code or ""
         street_name = partner.street_name or ""
-        if any('packstation' in s for s in [street_no.lower(), street_name.lower()]):
-            address.streetName = 'Packstation'
-            if len(street.split(' ')) > 1:
-                packstation['packstationNumber'] = street.split(' ')[0]
-                packstation['postNumber'] = street.split(' ')[1]
-                address.streetNumber = street.split(' ')[0]
-                address.name2 = street.split(' ')[1]
+        if any("packstation" in s for s in [street_no.lower(), street_name.lower()]):
+            address.streetName = "Packstation"
+            if len(street.split(" ")) > 1:
+                packstation["packstationNumber"] = street.split(" ")[0]
+                packstation["postNumber"] = street.split(" ")[1]
+                address.streetNumber = street.split(" ")[0]
+                address.name2 = street.split(" ")[1]
             else:
-                packstation['packstationNumber'] = street_no
-                packstation['postNumber'] = partner.street2 or ""
+                packstation["packstationNumber"] = street_no
+                packstation["postNumber"] = partner.street2 or ""
                 address.streetNumber = street_no
                 address.name2 = partner.street2
             receiver.Packstation = packstation
