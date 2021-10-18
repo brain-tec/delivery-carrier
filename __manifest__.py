@@ -8,7 +8,7 @@
     "category": "Delivery",
     "complexity": "normal",
     "depends": ["delivery", "mail", "base"],
-    "website": "http://www.braintec-group.com",
+    "website": "https://github.com/OCA/delivery-carrier",
     "data": [
         "views/delivery_carrier.xml",
         "views/stock_picking_views.xml",
