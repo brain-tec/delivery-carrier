@@ -3,7 +3,7 @@
 {
     "name": "Delivery Schenker",
     "summary": "Delivery Carrier implementation for DB Schenker API",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.1.0",
     "category": "Stock",
     "website": "https://github.com/OCA/delivery-carrier",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -12,5 +12,9 @@
     "installable": True,
     "depends": ["delivery_package_number", "delivery_state"],
     "external_dependencies": {"python": ["zeep"]},
-    "data": ["views/delivery_schenker_view.xml", "data/delivery_schenker_data.xml"],
+    "data": [
+        "views/delivery_schenker_view.xml",
+        "views/stock_picking_views.xml",
+        "data/delivery_schenker_data.xml",
+    ],
 }
