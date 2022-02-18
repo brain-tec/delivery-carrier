@@ -252,6 +252,8 @@ class PostlogisticsWebService(object):
             attributes["proClima"] = False
 
         attributes["przl"] = services
+        free_text_max_len = 34
+        attributes["freeText"] = picking.name[:free_text_max_len]
 
         return attributes
 
