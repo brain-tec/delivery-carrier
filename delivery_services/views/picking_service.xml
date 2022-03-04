@@ -4,8 +4,11 @@
         <field name="model">picking.service</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="service_id"/>
-                <field name="attribute_id" domain="[('id', 'in', service_id.available_attribute_ids.ids)]"/>
+                <field name="service_id" />
+                <field
+                    name="attribute_id"
+                    domain="[('id', 'in', service_id.available_attribute_ids.ids)]"
+                />
             </tree>
         </field>
     </record>

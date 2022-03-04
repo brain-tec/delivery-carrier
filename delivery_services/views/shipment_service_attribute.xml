@@ -4,7 +4,7 @@
         <field name="model">shipment.service.attribute</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="value"/>
+                <field name="value" />
             </tree>
         </field>
     </record>
@@ -14,8 +14,8 @@
         <field name="model">shipment.service.attribute</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="value"/>
-                <field name="related_service_id"/>
+                <field name="value" />
+                <field name="related_service_id" />
             </tree>
         </field>
     </record>

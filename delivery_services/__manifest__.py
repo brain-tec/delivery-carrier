@@ -18,7 +18,6 @@
     "website": "https://github.com/OCA/delivery-carrier",
     "data": [
         "security/ir.model.access.csv",
-
         "views/stock_picking_views.xml",
         "views/picking_service.xml",
         "views/shipment_service.xml",
