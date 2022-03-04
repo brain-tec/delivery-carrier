@@ -1,7 +1,14 @@
+##############################################################################
+#
+#    Copyright (c) 2022 brain-tec AG (http://www.braintec-group.com)
+#    All Right Reserved
+#
+#    See LICENSE file for full licensing details.
+##############################################################################
 {
     "name": "DHL Germany Shipping",
     "summary": "Print DHL DE shipping labels",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "author": "brain-tec AG, Odoo Community Association (OCA)",
     "maintainer": "brain-tec AG",
     "license": "AGPL-3",
