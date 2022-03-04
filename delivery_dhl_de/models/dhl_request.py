@@ -63,9 +63,9 @@ class DHLProvider:
         ShipmentDetails.shipmentDate = time.strftime("%Y-%m-%d")
         ShipmentDetails.ShipmentItem = self._set_shipmentItem(weight)
         # if the module delivery_services is installed we can check for shipment services
-        is_deliver_services_installed = \
-            picking.env['ir.module.module'].search([('name', '=', 'delivery_services'),
-                                                    ('state', '=', 'installed')], limit=1)
+        is_deliver_services_installed = picking.env["ir.module.module"].search(
+            [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
+        )
         if is_deliver_services_installed:
             ShipmentDetails.Service = self._set_shipment_services(picking)
         ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
@@ -157,7 +157,9 @@ class DHLProvider:
         shipment_services = self.bcs_factory.ShipmentService()
         # Check what services are attached to the picking
         for service in picking.service_ids:
-            shipment_services.__setattr__(service.service_id.name_xsd, service.attribute_id.value)
+            shipment_services.__setattr__(
+                service.service_id.name_xsd, service.attribute_id.value
+            )
         return shipment_services
 
     def _process_shipment(self, shipment_request, request_type):

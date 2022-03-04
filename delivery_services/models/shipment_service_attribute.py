@@ -6,12 +6,12 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ShipmentServiceAttribute(models.Model):
-    _name = 'shipment.service.attribute'
-    _rec_name = 'value'
+    _name = "shipment.service.attribute"
+    _rec_name = "value"
 
     value = fields.Char(required=True)
-    related_service_id = fields.Many2one('shipment.service')
+    related_service_id = fields.Many2one("shipment.service")

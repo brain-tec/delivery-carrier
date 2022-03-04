@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Shipment Services">
-                    <field name="service_ids"/>
+                    <field name="service_ids" />
                 </page>
             </xpath>
         </field>

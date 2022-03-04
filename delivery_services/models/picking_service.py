@@ -6,11 +6,11 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class PickingService(models.Model):
-    _name = 'picking.service'
+    _name = "picking.service"
 
-    service_id = fields.Many2one('shipment.service', required=True)
-    attribute_id = fields.Many2one('shipment.service.attribute')
+    service_id = fields.Many2one("shipment.service", required=True)
+    attribute_id = fields.Many2one("shipment.service.attribute")

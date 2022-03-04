@@ -4,9 +4,9 @@
         <field name="model">shipment.service</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="name_xsd"/>
-                <field name="available_attribute_ids"/>
+                <field name="name" />
+                <field name="name_xsd" />
+                <field name="available_attribute_ids" />
             </tree>
         </field>
     </record>
@@ -18,14 +18,18 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="name_xsd"/>
-                        <field name="product_domain" widget="domain" options="{'model': 'product.product'}"/>
+                        <field name="name" />
+                        <field name="name_xsd" />
+                        <field
+                            name="product_domain"
+                            widget="domain"
+                            options="{'model': 'product.product'}"
+                        />
                     </group>
                     <group>
                         <field name="available_attribute_ids" create="True">
                             <tree>
-                                <field name="value"/>
+                                <field name="value" />
                             </tree>
                         </field>
                     </group>
@@ -41,9 +45,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="shipment_service_menuitem"
-              action="shipment_service_action"
-              parent="delivery.menu_delivery"
-              name="Shipment Services"/>
+    <menuitem
+        id="shipment_service_menuitem"
+        action="shipment_service_action"
+        parent="delivery.menu_delivery"
+        name="Shipment Services"
+    />
 
 </odoo>
