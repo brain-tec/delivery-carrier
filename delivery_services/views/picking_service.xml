@@ -1,0 +1,20 @@
+<odoo>
+    <record id="picking_service_tree_view" model="ir.ui.view">
+        <field name="name">picking_service_tree_view</field>
+        <field name="model">picking.service</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="service_id"/>
+                <field name="attribute_id" domain="[('id', 'in', service_id.available_attribute_ids.ids)]"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="picking_service_action" model="ir.actions.act_window">
+        <field name="name">Shipment Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">picking.service</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

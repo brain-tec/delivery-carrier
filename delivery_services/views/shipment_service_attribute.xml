@@ -1,0 +1,30 @@
+<odoo>
+    <record id="shipment_service_attribute_tree_view" model="ir.ui.view">
+        <field name="name">shipment_service_attribute_tree_view</field>
+        <field name="model">shipment.service.attribute</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipment_service_attribute_form_view" model="ir.ui.view">
+        <field name="name">shipment_service_attribute_form_view</field>
+        <field name="model">shipment.service.attribute</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="value"/>
+                <field name="related_service_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipment_service_attribute_action" model="ir.actions.act_window">
+        <field name="name">Shipment Services Attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipment.service.attribute</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
