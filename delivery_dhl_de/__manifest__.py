@@ -1,9 +1,9 @@
 ##############################################################################
+# Copyright (c) 2022 brain-tec AG (https://braintec.com)
+# All Rights Reserved
 #
-#    Copyright (c) 2022 brain-tec AG (http://www.braintec-group.com)
-#    All Right Reserved
-#
-#    See LICENSE file for full licensing details.
+# Licensed under the Odoo Proprietary License v1.0 (OPL).
+# See LICENSE file for full licensing details.
 ##############################################################################
 {
     "name": "DHL Germany Shipping",
