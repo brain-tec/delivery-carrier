@@ -44,6 +44,17 @@ class DHLProvider:
         self.user = site_id
         self.signature = password
 
+    @staticmethod
+    def _format_customer_reference(ref):
+        """Format the customer reference according to DHL requirements
+
+        The customer reference should be at least 8 chars long, must be
+        at maximum 35 chars long, and unique.
+        """
+        customer_reference_min_len = 8
+        customer_reference_max_len = 35
+        return ref.rjust(customer_reference_min_len)[:customer_reference_max_len]
+
     def _set_ShipmentOrder(self, picking, order, dhl_product, ekp_number, weight):
         shipmentOrder = self.bcs_factory.ShipmentOrderType()
         ShipmentDetails = self.bcs_factory.ShipmentDetailsTypeType()
@@ -52,6 +63,7 @@ class DHLProvider:
             shipper_partner_id = picking.picking_type_id.warehouse_id.partner_id
             receiver_partner_id = picking.partner_id
             shipment_carrier_id = picking.carrier_id
+            customer_reference = self._format_customer_reference(picking.name)
             # if the module delivery_services is installed we can check for shipment services
             is_deliver_services_installed = picking.env["ir.module.module"].search(
                 [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
@@ -60,6 +72,7 @@ class DHLProvider:
             shipper_partner_id = order.warehouse_id.partner_id
             receiver_partner_id = order.partner_shipping_id
             shipment_carrier_id = order.carrier_id
+            customer_reference = self._format_customer_reference(order.name)
         Shipment = {"ShipmentDetails": ShipmentDetails}
         shipmentOrder.sequenceNumber = "01"
         shipmentOrder.Shipment = Shipment
@@ -70,6 +83,7 @@ class DHLProvider:
         if is_deliver_services_installed:
             ShipmentDetails.Service = self._set_shipment_services(picking)
         ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
+        ShipmentDetails.customerReference = customer_reference
         Shipment.update(
             {
                 "Shipper": self._set_shipper(shipper_partner_id, shipment_carrier_id),
