@@ -47,10 +47,15 @@ class DHLProvider:
     def _set_ShipmentOrder(self, picking, order, dhl_product, ekp_number, weight):
         shipmentOrder = self.bcs_factory.ShipmentOrderType()
         ShipmentDetails = self.bcs_factory.ShipmentDetailsTypeType()
+        is_deliver_services_installed = False
         if picking:
             shipper_partner_id = picking.picking_type_id.warehouse_id.partner_id
             receiver_partner_id = picking.partner_id
             shipment_carrier_id = picking.carrier_id
+            # if the module delivery_services is installed we can check for shipment services
+            is_deliver_services_installed = picking.env["ir.module.module"].search(
+                [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
+            )
         elif order:
             shipper_partner_id = order.warehouse_id.partner_id
             receiver_partner_id = order.partner_shipping_id
@@ -62,10 +67,6 @@ class DHLProvider:
         ShipmentDetails.accountNumber = ekp_number
         ShipmentDetails.shipmentDate = time.strftime("%Y-%m-%d")
         ShipmentDetails.ShipmentItem = self._set_shipmentItem(weight)
-        # if the module delivery_services is installed we can check for shipment services
-        is_deliver_services_installed = picking.env["ir.module.module"].search(
-            [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
-        )
         if is_deliver_services_installed:
             ShipmentDetails.Service = self._set_shipment_services(picking)
         ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
