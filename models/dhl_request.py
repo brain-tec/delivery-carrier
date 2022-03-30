@@ -65,7 +65,7 @@ class DHLProvider:
             shipment_carrier_id = picking.carrier_id
             customer_reference = self._format_customer_reference(picking.name)
             # if the module delivery_services is installed we can check for shipment services
-            is_deliver_services_installed = picking.env["ir.module.module"].search(
+            is_deliver_services_installed = picking.sudo().env["ir.module.module"].search(
                 [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
             )
         elif order:
