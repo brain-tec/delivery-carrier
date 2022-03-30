@@ -82,7 +82,7 @@ class DHLProvider:
         ShipmentDetails.ShipmentItem = self._set_shipmentItem(weight)
         if is_deliver_services_installed:
             ShipmentDetails.Service = self._set_shipment_services(picking)
-        ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
+        ShipmentDetails.Notification = self._set_Notification(receiver_partner_id)
         ShipmentDetails.customerReference = customer_reference
         Shipment.update(
             {
@@ -99,7 +99,7 @@ class DHLProvider:
         ShipmentItem.weightInKG = weight
         return ShipmentItem
 
-    def _set_Notificaiton(self, partner):
+    def _set_Notification(self, partner):
         notification = self.bcs_factory.ShipmentNotificationType()
         notification.recipientEmailAddress = partner.email
         return notification
@@ -172,9 +172,11 @@ class DHLProvider:
         shipment_services = self.bcs_factory.ShipmentService()
         # Check what services are attached to the picking
         for service in picking.service_ids:
-            shipment_services.__setattr__(
-                service.service_id.name_xsd, service.attribute_id.value
-            )
+            if hasattr(shipment_services, service.service_id.name_xsd):
+                service_conf = self.bcs_factory.ServiceconfigurationVisualAgeCheck()
+                service_conf.active = "1"
+                service_conf[service.service_id.attribute_name] = service.attribute_id.value
+                shipment_services[service.service_id.name_xsd] = service_conf
         return shipment_services
 
     def _process_shipment(self, shipment_request, request_type):
