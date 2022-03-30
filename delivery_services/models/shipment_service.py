@@ -14,6 +14,7 @@ class ShipmentService(models.Model):
 
     name = fields.Char(required=True)
     name_xsd = fields.Char("Name in the XSD Space", required=True)
+    attribute_name = fields.Char(required=True)
     available_attribute_ids = fields.One2many(
         "shipment.service.attribute", "related_service_id"
     )
