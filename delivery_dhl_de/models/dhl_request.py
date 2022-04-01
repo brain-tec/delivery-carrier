@@ -58,11 +58,16 @@ class DHLProvider:
     def _set_ShipmentOrder(self, picking, order, dhl_product, ekp_number, weight):
         shipmentOrder = self.bcs_factory.ShipmentOrderType()
         ShipmentDetails = self.bcs_factory.ShipmentDetailsTypeType()
+        is_deliver_services_installed = False
         if picking:
             shipper_partner_id = picking.picking_type_id.warehouse_id.partner_id
             receiver_partner_id = picking.partner_id
             shipment_carrier_id = picking.carrier_id
             customer_reference = self._format_customer_reference(picking.name)
+            # if the module delivery_services is installed we can check for shipment services
+            is_deliver_services_installed = picking.sudo().env["ir.module.module"].search(
+                [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
+            )
         elif order:
             shipper_partner_id = order.warehouse_id.partner_id
             receiver_partner_id = order.partner_shipping_id
@@ -75,7 +80,9 @@ class DHLProvider:
         ShipmentDetails.accountNumber = ekp_number
         ShipmentDetails.shipmentDate = time.strftime("%Y-%m-%d")
         ShipmentDetails.ShipmentItem = self._set_shipmentItem(weight)
-        ShipmentDetails.Notification = self._set_Notificaiton(shipper_partner_id)
+        if is_deliver_services_installed:
+            ShipmentDetails.Service = self._set_shipment_services(picking)
+        ShipmentDetails.Notification = self._set_Notification(receiver_partner_id)
         ShipmentDetails.customerReference = customer_reference
         Shipment.update(
             {
@@ -92,7 +99,7 @@ class DHLProvider:
         ShipmentItem.weightInKG = weight
         return ShipmentItem
 
-    def _set_Notificaiton(self, partner):
+    def _set_Notification(self, partner):
         notification = self.bcs_factory.ShipmentNotificationType()
         notification.recipientEmailAddress = partner.email
         return notification
@@ -160,6 +167,17 @@ class DHLProvider:
             communication.email = partner.email
         receiver.Communication = communication
         return receiver
+
+    def _set_shipment_services(self, picking):
+        shipment_services = self.bcs_factory.ShipmentService()
+        # Check what services are attached to the picking
+        for service in picking.service_ids:
+            if hasattr(shipment_services, service.service_id.name_xsd):
+                service_conf = self.bcs_factory.ServiceconfigurationVisualAgeCheck()
+                service_conf.active = "1"
+                service_conf[service.service_id.attribute_name] = service.attribute_id.value
+                shipment_services[service.service_id.name_xsd] = service_conf
+        return shipment_services
 
     def _process_shipment(self, shipment_request, request_type):
         if request_type == "createShipmentOrder":

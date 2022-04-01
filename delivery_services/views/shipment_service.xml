@@ -1,0 +1,57 @@
+<odoo>
+    <record id="shipment_service_tree_view" model="ir.ui.view">
+        <field name="name">shipment_service_tree_view</field>
+        <field name="model">shipment.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="name_xsd" />
+                <field name="attribute_name" />
+                <field name="available_attribute_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipment_service_form_view" model="ir.ui.view">
+        <field name="name">shipment_service_form_view</field>
+        <field name="model">shipment.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="name_xsd" />
+                        <field name="attribute_name" />
+                        <field
+                            name="product_domain"
+                            widget="domain"
+                            options="{'model': 'product.product'}"
+                        />
+                    </group>
+                    <group>
+                        <field name="available_attribute_ids" create="True">
+                            <tree>
+                                <field name="value" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="shipment_service_action" model="ir.actions.act_window">
+        <field name="name">Shipment Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipment.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="shipment_service_menuitem"
+        action="shipment_service_action"
+        parent="delivery.menu_delivery"
+        name="Shipment Services"
+    />
+
+</odoo>

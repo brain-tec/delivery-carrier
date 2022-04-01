@@ -6,4 +6,7 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 
-from . import models
+from . import stock_picking
+from . import picking_service
+from . import shipment_service
+from . import shipment_service_attribute
