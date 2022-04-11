@@ -1,4 +1,5 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/99/13.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-delivery-carrier-99)
+
+[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/delivery-carrier&target_branch=13.0)
 [![Build Status](https://travis-ci.com/OCA/delivery-carrier.svg?branch=13.0)](https://travis-ci.com/OCA/delivery-carrier)
 [![codecov](https://codecov.io/gh/OCA/delivery-carrier/branch/13.0/graph/badge.svg)](https://codecov.io/gh/OCA/delivery-carrier)
 [![Translation Status](https://translation.odoo-community.org/widgets/delivery-carrier-13-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/delivery-carrier-13-0/?utm_source=widget)
@@ -21,7 +22,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_delivery_carrier_files](base_delivery_carrier_files/) | 13.0.1.0.0 |  | Base module for creation of delivery carrier files
 [base_delivery_carrier_label](base_delivery_carrier_label/) | 13.0.2.0.0 |  | Base module for carrier labels
-[delivery_auto_refresh](delivery_auto_refresh/) | 13.0.1.0.6 |  | Auto-refresh delivery price in sales orders
+[delivery_auto_refresh](delivery_auto_refresh/) | 13.0.1.0.7 |  | Auto-refresh delivery price in sales orders
 [delivery_carrier_info](delivery_carrier_info/) | 13.0.1.0.0 |  | Add code and description on carrier
 [delivery_carrier_partner](delivery_carrier_partner/) | 13.0.1.0.1 |  | Add a partner in the delivery carrier
 [delivery_carrier_pricelist](delivery_carrier_pricelist/) | 13.0.1.0.0 |  | Compute method method fees based on the product's pricelist.
@@ -56,12 +57,11 @@ addon | version | maintainers | summary
 
 This repository is licensed under [AGPL-3.0](LICENSE).
 
-However, each module can have a totally different license, as long as they adhere to OCA
+However, each module can have a totally different license, as long as they adhere to Odoo Community Association (OCA)
 policy. Consult each module's `__manifest__.py` file, which contains a `license` key
 that explains its license.
 
 ----
-
 OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit
 organization whose mission is to support the collaborative development of Odoo features
 and promote its widespread use.
