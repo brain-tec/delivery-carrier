@@ -65,8 +65,13 @@ class DHLProvider:
             shipment_carrier_id = picking.carrier_id
             customer_reference = self._format_customer_reference(picking.name)
             # if the module delivery_services is installed we can check for shipment services
-            is_deliver_services_installed = picking.sudo().env["ir.module.module"].search(
-                [("name", "=", "delivery_services"), ("state", "=", "installed")], limit=1
+            is_deliver_services_installed = (
+                picking.sudo()
+                .env["ir.module.module"]
+                .search(
+                    [("name", "=", "delivery_services"), ("state", "=", "installed")],
+                    limit=1,
+                )
             )
         elif order:
             shipper_partner_id = order.warehouse_id.partner_id
@@ -175,7 +180,9 @@ class DHLProvider:
             if hasattr(shipment_services, service.service_id.name_xsd):
                 service_conf = self.bcs_factory.ServiceconfigurationVisualAgeCheck()
                 service_conf.active = "1"
-                service_conf[service.service_id.attribute_name] = service.attribute_id.value
+                service_conf[
+                    service.service_id.attribute_name
+                ] = service.attribute_id.value
                 shipment_services[service.service_id.name_xsd] = service_conf
         return shipment_services
 
