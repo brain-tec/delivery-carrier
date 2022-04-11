@@ -50,19 +50,18 @@ class StockPicking(models.Model):
                 for service in services:
                     product_domain = service.product_domain
                     products = product_product.search(ast.literal_eval(product_domain))
-                    sp_products = \
-                        self.move_ids_without_package.mapped("product_id")\
-                        or self.move_line_ids_without_package.mapped("product_id")
-                    if any(
-                        p_id in products.ids
-                        for p_id in sp_products.ids
-                    ):
+                    sp_products = self.move_ids_without_package.mapped(
+                        "product_id"
+                    ) or self.move_line_ids_without_package.mapped("product_id")
+                    if any(p_id in products.ids for p_id in sp_products.ids):
                         # Don't add multiple times the same time of service
                         if service not in item.service_ids.mapped("service_id"):
                             new_service = picking_service.create(
                                 {
                                     "service_id": service.id,
-                                    "attribute_id": service.available_attribute_ids[0].id,
+                                    "attribute_id": service.available_attribute_ids[
+                                        0
+                                    ].id,
                                 }
                             )
                             item.service_ids |= new_service
