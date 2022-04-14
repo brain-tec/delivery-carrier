@@ -36,11 +36,12 @@ addon | version | maintainers | summary
 [delivery_carrier_pricelist](delivery_carrier_pricelist/) | 14.0.1.0.1 |  | Compute method method fees based on the product's pricelist.
 [delivery_correos_express](delivery_correos_express/) | 14.0.1.0.0 |  | Delivery Carrier implementation for Correos Express using their API
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 14.0.1.0.0 |  | Hide free fee lines on sales orders
-[delivery_multi_destination](delivery_multi_destination/) | 14.0.1.0.1 |  | Multiple destinations for the same delivery method
+[delivery_multi_destination](delivery_multi_destination/) | 14.0.1.1.0 |  | Multiple destinations for the same delivery method
 [delivery_package_fee](delivery_package_fee/) | 14.0.1.0.2 |  | Add fees on delivered packages on shipping methods
 [delivery_package_number](delivery_package_number/) | 14.0.1.0.0 |  | Set or compute number of packages for a picking
 [delivery_postlogistics](delivery_postlogistics/) | 14.0.1.0.2 |  | Print PostLogistics shipping labels using the Barcode web service
 [delivery_postlogistics_server_env](delivery_postlogistics_server_env/) | 14.0.1.0.0 |  | Server Environment layer for Delivery Postlogistics
+[delivery_price_rule_untaxed](delivery_price_rule_untaxed/) | 14.0.1.0.1 | [![AshishHirapara](https://github.com/AshishHirapara.png?size=30px)](https://github.com/AshishHirapara) | Add untaxed amount to variables for price delivery price rule
 [delivery_roulier](delivery_roulier/) | 14.0.1.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Integration of multiple carriers
 [delivery_roulier_laposte_fr](delivery_roulier_laposte_fr/) | 14.0.1.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Generate Label for La Poste/Colissimo
 [delivery_roulier_option](delivery_roulier_option/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Add options to roulier modules
