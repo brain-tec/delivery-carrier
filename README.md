@@ -1,6 +1,7 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/delivery-carrier&target_branch=13.0)
-[![Build Status](https://travis-ci.com/OCA/delivery-carrier.svg?branch=13.0)](https://travis-ci.com/OCA/delivery-carrier)
+[![Pre-commit Status](https://github.com/OCA/delivery-carrier/actions/workflows/pre-commit.yml/badge.svg?branch=13.0)](https://github.com/OCA/delivery-carrier/actions/workflows/pre-commit.yml?query=branch%3A13.0)
+[![Build Status](https://github.com/OCA/delivery-carrier/actions/workflows/test.yml/badge.svg?branch=13.0)](https://github.com/OCA/delivery-carrier/actions/workflows/test.yml?query=branch%3A13.0)
 [![codecov](https://codecov.io/gh/OCA/delivery-carrier/branch/13.0/graph/badge.svg)](https://codecov.io/gh/OCA/delivery-carrier)
 [![Translation Status](https://translation.odoo-community.org/widgets/delivery-carrier-13-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/delivery-carrier-13-0/?utm_source=widget)
 
@@ -29,7 +30,7 @@ addon | version | maintainers | summary
 [delivery_carrier_service_level](delivery_carrier_service_level/) | 13.0.1.0.2 |  | Add service levels to carrier
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 13.0.1.0.2 |  | Hide free fee lines on sales orders
 [delivery_local_pickup](delivery_local_pickup/) | 13.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Delivery Local pickup
-[delivery_multi_destination](delivery_multi_destination/) | 13.0.1.0.1 |  | Multiple destinations for the same delivery method
+[delivery_multi_destination](delivery_multi_destination/) | 13.0.1.1.0 |  | Multiple destinations for the same delivery method
 [delivery_package_fee](delivery_package_fee/) | 13.0.1.1.3 |  | Add fees on delivered packages on shipping methods
 [delivery_package_number](delivery_package_number/) | 13.0.1.0.0 |  | Set or compute number of packages for a picking
 [delivery_postlogistics](delivery_postlogistics/) | 13.0.1.2.1 |  | Print PostLogistics shipping labels using the Barcode web service
