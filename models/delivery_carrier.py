@@ -296,7 +296,11 @@ class DeliveryCarrier(models.Model):
             picking, order, self.dhl_de_services_name, account_number, 5
         )
 
-        dhl_response = srm._process_shipment(shipment_request, "validateShipment")
+        try:
+            dhl_response = srm._process_shipment(shipment_request, "validateShipment")
+        except Exception as error:
+            return False, error
+
         msg = _("DHL DE Error Code : %s - %s")
         for ValidationState in dhl_response.ValidationState:
             if ValidationState.Status.statusCode:
