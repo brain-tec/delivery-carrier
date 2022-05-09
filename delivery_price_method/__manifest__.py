@@ -7,10 +7,10 @@
     "and also adds a global fields",
     "author": "Trey (www.trey.es), " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/delivery-carrier",
-    "development_status": "Production/Stable",
     "license": "AGPL-3",
+    "development_status": "Production/Stable",
     "category": "Delivery",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.0.2",
     "depends": ["delivery"],
     "data": ["views/delivery_carrier_views.xml"],
 }
