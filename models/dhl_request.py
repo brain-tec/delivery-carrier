@@ -224,6 +224,14 @@ class DHLProvider:
         shipment_response_element = response_element_xml.find(
             find_response_element_name, response_element_xml.nsmap
         )
-        Response = self.client.get_element(response_element_name)
-        response_zeep = Response.type.parse_xmlelement(shipment_response_element)
+        response = self.client.get_element(response_element_name)
+        resp_type = response.type
+        schema = self.client.wsdl.types
+        schema.settings.strict = False
+        response_zeep = response.type.parse_xmlelement(
+            shipment_response_element,
+            schema=schema,
+            schema_type=resp_type
+        )
+
         return response_zeep

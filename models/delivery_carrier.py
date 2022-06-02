@@ -296,12 +296,17 @@ class DeliveryCarrier(models.Model):
             picking, order, self.dhl_de_services_name, account_number, 5
         )
 
-        try:
-            dhl_response = srm._process_shipment(shipment_request, "validateShipment")
-        except Exception as error:
-            return False, error
+        dhl_response = srm._process_shipment(shipment_request, "validateShipment")
 
         msg = _("DHL DE Error Code : %s - %s")
+        ret_val = False
+        ret_msg = "Unkwon Error encountered"
+        if dhl_response.Status:
+            status_code = dhl_response.Status.statusCode
+            status_text = dhl_response.Status.statusText
+            if status_code:
+                ret_msg = msg % (status_code, status_text)
+
         for ValidationState in dhl_response.ValidationState:
             if ValidationState.Status.statusCode:
                 custom_status_msg = ValidationState.Status.statusMessage
@@ -315,6 +320,10 @@ class DeliveryCarrier(models.Model):
                         custom_status_text += "\n" + "\n".join(custom_status_msg)
                 status_code = ValidationState.Status.statusCode
                 error = msg % (status_code, custom_status_text)
-                return False, error
+                ret_val = False
+                ret_msg = error
             else:
-                return True, ""
+                ret_val = True
+                ret_msg = ""
+
+        return ret_val, ret_msg
