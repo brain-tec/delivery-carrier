@@ -229,9 +229,7 @@ class DHLProvider:
         schema = self.client.wsdl.types
         schema.settings.strict = False
         response_zeep = response.type.parse_xmlelement(
-            shipment_response_element,
-            schema=schema,
-            schema_type=resp_type
+            shipment_response_element, schema=schema, schema_type=resp_type
         )
 
         return response_zeep
