@@ -69,9 +69,10 @@ class StockPicking(models.Model):
                     and carrier.delivery_type == "dhl_de"
                     and not self.env.context.get("sale_amazon_get_order")
                 ):
-                    (is_address_valid, validation_dhl,) = sp.carrier_id.dhl_validation(
-                        sp, None
-                    )
+                    (
+                        is_address_valid,
+                        validation_dhl,
+                    ) = sp.carrier_id.dhl_validation(sp, None)
                     if not is_address_valid:
                         invalid_ids.append(sp.id)
                         new_vals = vals.copy()

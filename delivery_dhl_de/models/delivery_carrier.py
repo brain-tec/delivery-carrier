@@ -18,12 +18,13 @@ _logger = logging.getLogger(__name__)
 
 
 class DeliveryCarrier(models.Model):
-    """ Add service group """
+    """Add service group"""
 
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(selection_add=[("dhl_de", "DHL DE")],
-                                     ondelete={'dhl_de': 'set default'})
+    delivery_type = fields.Selection(
+        selection_add=[("dhl_de", "DHL DE")], ondelete={"dhl_de": "set default"}
+    )
 
     dhl_de_user_id = fields.Char(
         "DHL UserId",
@@ -270,8 +271,8 @@ class DeliveryCarrier(models.Model):
         return street, street_no
 
     def allows_dhl_validation(self):
-        """ A delivery carrier allows for DHL address validation if
-            its delivery type is one of the kind of DHL.
+        """A delivery carrier allows for DHL address validation if
+        its delivery type is one of the kind of DHL.
         """
         self.ensure_one()
         return "dhl_de" in (self.delivery_type or "").lower()
@@ -305,7 +306,7 @@ class DeliveryCarrier(models.Model):
             status_code = dhl_response.Status.statusCode
             status_text = dhl_response.Status.statusText
             if status_code:
-                ret_msg = msg % {'status_code': status_code, 'status_text': status_text}
+                ret_msg = msg % {"status_code": status_code, "status_text": status_text}
 
         for ValidationState in dhl_response.ValidationState:
             if ValidationState.Status.statusCode:
@@ -319,7 +320,10 @@ class DeliveryCarrier(models.Model):
                     else:
                         custom_status_text += "\n" + "\n".join(custom_status_msg)
                 status_code = ValidationState.Status.statusCode
-                error = msg % {'status_code': status_code, 'status_text': custom_status_text}
+                error = msg % {
+                    "status_code": status_code,
+                    "status_text": custom_status_text,
+                }
                 ret_val = False
                 ret_msg = error
             else:
