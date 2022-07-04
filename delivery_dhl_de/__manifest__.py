@@ -8,13 +8,13 @@
 {
     "name": "DHL Germany Shipping",
     "summary": "Print DHL DE shipping labels",
-    "version": "13.0.1.0.1",
+    "version": "15.0.1.0.0",
     "author": "brain-tec AG, Odoo Community Association (OCA)",
     "maintainer": "brain-tec AG",
     "license": "AGPL-3",
     "category": "Delivery",
     "complexity": "normal",
-    "depends": ["delivery", "mail", "base"],
+    "depends": ["delivery", "mail", "base", "base_address_extended"],
     "website": "https://github.com/OCA/delivery-carrier",
     "data": [
         "views/delivery_carrier.xml",

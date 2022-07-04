@@ -34,7 +34,7 @@ class StockPicking(models.Model):
             else:
                 record.dhl_de_picking = False
 
-    @api.depends("carrier_tracking_ref", "carrier_id", "carrier_id")
+    @api.depends("carrier_tracking_ref", "carrier_id", "carrier_id.dhl_de_label_format")
     def _compute_show_dhl_label_button(self):
         for sp in self:
             att = sp.get_dhl_attachment()

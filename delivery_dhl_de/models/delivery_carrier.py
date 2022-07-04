@@ -22,7 +22,8 @@ class DeliveryCarrier(models.Model):
 
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(selection_add=[("dhl_de", "DHL DE")])
+    delivery_type = fields.Selection(selection_add=[("dhl_de", "DHL DE")],
+                                     ondelete={'dhl_de': 'set default'})
 
     dhl_de_user_id = fields.Char(
         "DHL UserId",
@@ -73,8 +74,8 @@ class DeliveryCarrier(models.Model):
     dhl_de_package_weight_unit = fields.Selection(
         [("L", "Pounds"), ("K", "Kilograms")], default="K", string="Package Weight Unit"
     )
-    dhl_de_default_packaging_id = fields.Many2one(
-        "product.packaging", string="DHL Default Packaging Type"
+    dhl_de_default_package_type_id = fields.Many2one(
+        "stock.package.type", string="DHL Default Package Type"
     )
     dhl_de_label_format = fields.Selection(
         [("PDF", "PDF"), ("ZPL2", "ZPL2")], string="Label Image Format", default="PDF"
@@ -87,7 +88,6 @@ class DeliveryCarrier(models.Model):
             ("DOCUMENT", "DOCUMENT"),
             ("RETURN_OF_GOODS", "RETURN_OF_GOODS"),
         ],
-        string="Export Type",
         help="Depends on chosen product only mandatory for international and non EU "
         "shipments.",
     )
@@ -105,7 +105,7 @@ class DeliveryCarrier(models.Model):
 
     def dhl_de_get_tracking_link(self, picking):
         if not picking.carrier_tracking_ref:
-            raise (_("Picking {} is missing a tracking reference".format(picking.name)))
+            raise (_("Picking {} is missing a tracking reference").format(picking.name))
         return "https://www.dhl.com/de-de/home/tracking.html?tracking-id={}".format(
             picking.carrier_tracking_ref
         )
@@ -298,14 +298,14 @@ class DeliveryCarrier(models.Model):
 
         dhl_response = srm._process_shipment(shipment_request, "validateShipment")
 
-        msg = _("DHL DE Error Code : %s - %s")
+        msg = _("DHL DE Error Code : %(status_code)s - %(status_text)s")
         ret_val = False
         ret_msg = "Unkwon Error encountered"
         if dhl_response.Status:
             status_code = dhl_response.Status.statusCode
             status_text = dhl_response.Status.statusText
             if status_code:
-                ret_msg = msg % (status_code, status_text)
+                ret_msg = msg % {'status_code': status_code, 'status_text': status_text}
 
         for ValidationState in dhl_response.ValidationState:
             if ValidationState.Status.statusCode:
@@ -319,7 +319,7 @@ class DeliveryCarrier(models.Model):
                     else:
                         custom_status_text += "\n" + "\n".join(custom_status_msg)
                 status_code = ValidationState.Status.statusCode
-                error = msg % (status_code, custom_status_text)
+                error = msg % {'status_code': status_code, 'status_text': custom_status_text}
                 ret_val = False
                 ret_msg = error
             else:

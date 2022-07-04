@@ -51,7 +51,7 @@
                                 attrs="{'required':[('delivery_type', '==', 'dhl_de')]}"
                             />
                             <field
-                                name="dhl_de_default_packaging_id"
+                                name="dhl_de_default_package_type_id"
                                 attrs="{'required':[('delivery_type', '==', 'dhl_de')]}"
                             />
                             <field
