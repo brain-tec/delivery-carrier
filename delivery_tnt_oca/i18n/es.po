@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 15:09+0000\n"
-"PO-Revision-Date: 2021-11-04 16:10+0100\n"
+"POT-Creation-Date: 2022-06-27 14:10+0000\n"
+"PO-Revision-Date: 2022-06-27 16:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 2.3\n"
-
-#. module: delivery_tnt_oca
-#: model:ir.actions.report,print_report_name:delivery_tnt_oca.label_delivery_tnt_oca
-msgid "'TNT-%s' % object.carrier_tracking_ref"
-msgstr "'TNT-%s' % object.carrier_tracking_ref"
 
 #. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_service_d__ex10
@@ -81,6 +76,18 @@ msgid "Credentials"
 msgstr "Credenciales"
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_default_packaging_id
+msgid "Default Packaging Type"
+msgstr "Tipo de paquete por defecto"
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_product_packaging__display_name
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_type__d
 msgid "Document (paper/manuals/reports)"
 msgstr "Documento (papel/manuales/informes)"
@@ -113,9 +120,23 @@ msgid "GLOBAL EXPRESS"
 msgstr "GLOBAL EXPRESS"
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_product_packaging__id
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_line_of_business__2
 msgid "International non-domestic transfers"
 msgstr "Transferencias internacionales no nacionales"
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_product_packaging____last_update
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: delivery_tnt_oca
 #: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_line_of_business
@@ -333,6 +354,11 @@ msgid "Transfer"
 msgstr "Albarán"
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_use_packages_from_picking
+msgid "Use packages from picking"
+msgstr "Usar paquetes de picking"
+
+#. module: delivery_tnt_oca
 #: model_terms:ir.ui.view,arch_db:delivery_tnt_oca.view_delivery_carrier_tnt_oca_form
 msgid "Username"
 msgstr "Usuario"
@@ -351,3 +377,6 @@ msgstr "Contraseña"
 #: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_oca_ws_username
 msgid "WS Username"
 msgstr "Usuario"
+
+#~ msgid "'TNT-%s' % object.carrier_tracking_ref"
+#~ msgstr "'TNT-%s' % object.carrier_tracking_ref"
