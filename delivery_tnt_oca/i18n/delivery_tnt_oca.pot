@@ -77,6 +77,11 @@ msgid "Credentials"
 msgstr ""
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_default_packaging_id
+msgid "Default Packaging Type"
+msgstr ""
+
+#. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_type__d
 msgid "Document (paper/manuals/reports)"
 msgstr ""
@@ -326,6 +331,11 @@ msgstr ""
 #. module: delivery_tnt_oca
 #: model:ir.model,name:delivery_tnt_oca.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_use_packages_from_picking
+msgid "Use packages from picking"
 msgstr ""
 
 #. module: delivery_tnt_oca
