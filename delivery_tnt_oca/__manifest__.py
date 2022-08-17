@@ -1,9 +1,9 @@
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Delivery TNT OCA",
     "summary": "Integrate TNT webservice",
-    "version": "13.0.1.0.3",
+    "version": "13.0.1.1.0",
     "category": "Delivery",
     "website": "https://github.com/OCA/delivery-carrier",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -17,6 +17,7 @@
     ],
     "external_dependencies": {"python": ["dicttoxml", "xmltodict"]},
     "data": [
+        "data/product_packaging_data.xml",
         "views/delivery_carrier_view.xml",
         "report/picking_templates.xml",
         "report/stock_report_views.xml",
