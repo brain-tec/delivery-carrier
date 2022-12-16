@@ -52,6 +52,11 @@ msgid "Account"
 msgstr ""
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_service_option__bb
+msgid "BB"
+msgstr ""
+
+#. module: delivery_tnt_oca
 #: model:ir.model.fields,field_description:delivery_tnt_oca.field_product_packaging__package_carrier_type
 msgid "Carrier"
 msgstr ""
@@ -99,6 +104,11 @@ msgid "ECONOMY EXPRESS"
 msgstr ""
 
 #. module: delivery_tnt_oca
+#: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_service_option__eq
+msgid "EQ"
+msgstr ""
+
+#. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_service_n__ec
 msgid "Economy Express"
 msgstr ""
@@ -113,6 +123,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_code_d__15d
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_code_n__15n
 msgid "GLOBAL EXPRESS"
+msgstr ""
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_service_option__hz
+msgid "HZ"
 msgstr ""
 
 #. module: delivery_tnt_oca
@@ -147,6 +162,11 @@ msgstr ""
 #. module: delivery_tnt_oca
 #: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_product_type__n
 msgid "Non-document (packages)"
+msgstr ""
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_service_option__pr
+msgid "PR"
 msgstr ""
 
 #. module: delivery_tnt_oca
@@ -228,6 +248,11 @@ msgstr ""
 #: code:addons/delivery_tnt_oca/models/tnt_request.py:0
 #, python-format
 msgid "Server not reachable, please try again later"
+msgstr ""
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_service_option
+msgid "Service option"
 msgstr ""
 
 #. module: delivery_tnt_oca
@@ -372,6 +397,11 @@ msgstr ""
 #. module: delivery_tnt_oca
 #: model:ir.model.fields,field_description:delivery_tnt_oca.field_delivery_carrier__tnt_oca_ws_username
 msgid "WS Username"
+msgstr ""
+
+#. module: delivery_tnt_oca
+#: model:ir.model.fields.selection,name:delivery_tnt_oca.selection__delivery_carrier__tnt_service_option__xbb
+msgid "XBB"
 msgstr ""
 
 #. module: delivery_tnt_oca

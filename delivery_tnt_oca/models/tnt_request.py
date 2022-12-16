@@ -24,6 +24,7 @@ class TntRequest(object):
         self.product_type = self.carrier.tnt_product_type
         self.product_code = self.carrier.tnt_product_code
         self.product_service = self.carrier.tnt_product_service
+        self.service_option = self.carrier.tnt_service_option
         self.username = self.carrier.tnt_oca_ws_username
         self.password = self.carrier.tnt_oca_ws_password
         self.account = self.carrier.tnt_oca_ws_account
@@ -159,10 +160,10 @@ class TntRequest(object):
         return {
             "ITEMS": self.record.number_of_packages,
             "DESCRIPTION": self.record.name,
-            "LENGTH": data_total["length"],
-            "HEIGHT": data_total["height"],
-            "WIDTH": data_total["width"],
-            "WEIGHT": data_total["weight"],
+            "LENGTH": data_total["length"] / self.record.number_of_packages,
+            "HEIGHT": data_total["height"] / self.record.number_of_packages,
+            "WIDTH": data_total["width"] / self.record.number_of_packages,
+            "WEIGHT": data_total["weight"] / self.record.number_of_packages,
         }
 
     def _prepare_address(self, partner):
@@ -261,7 +262,7 @@ class TntRequest(object):
                         "TOTALWEIGHT": data_total["weight"],
                         "TOTALVOLUME": data_total["volume"],
                         "SERVICE": self.product_code,
-                        "OPTION": "PR",
+                        "OPTION": self.service_option or "",
                         "DESCRIPTION": "",
                         "DELIVERYINST": "",
                         "PACKAGE": package,
@@ -376,9 +377,9 @@ class TntRequest(object):
             res.update({"addressLine3": address[60:30]})
         return res
 
-    def _prepare_label(self):
+    def _prepare_label_data(self):
         data_total = self._get_data_total_shipping()
-        data = {
+        return {
             "consignment": {
                 "consignmentIdentity": {
                     "consignmentNumber": re.sub(
@@ -411,12 +412,20 @@ class TntRequest(object):
                         "weight": data_total["weight"],
                     },
                     "pieces": {
-                        "sequenceNumbers": self.record.number_of_packages,
+                        "sequenceNumbers": ",".join(
+                            [
+                                str(i)
+                                for i in range(1, self.record.number_of_packages + 1)
+                            ]
+                        ),
                         "pieceReference": "",
                     },
                 },
             }
         }
+
+    def _prepare_label(self):
+        data = self._prepare_label_data()
         return dicttoxml.dicttoxml(
             data, attr_type=False, custom_root="labelRequest"
         ).decode("utf-8")
