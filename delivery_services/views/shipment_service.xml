@@ -48,7 +48,7 @@
     <menuitem
         id="shipment_service_menuitem"
         action="shipment_service_action"
-        parent="delivery.menu_delivery"
+        parent="stock.menu_delivery"
         name="Shipment Services"
     />
 

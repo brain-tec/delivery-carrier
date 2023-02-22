@@ -7,7 +7,7 @@
                 <field name="service_id" />
                 <field
                     name="attribute_id"
-                    domain="[('id', 'in', service_id.available_attribute_ids.ids)]"
+                    filter_domain="[('id', 'in', service_id.available_attribute_ids.ids)]"
                 />
             </tree>
         </field>

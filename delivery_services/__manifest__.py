@@ -8,7 +8,7 @@
 {
     "name": "Delivery Services Configuration",
     "summary": "Delivery Services Configuration",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "brain-tec AG, Odoo Community Association (OCA)",
     "maintainer": "brain-tec AG",
     "license": "AGPL-3",

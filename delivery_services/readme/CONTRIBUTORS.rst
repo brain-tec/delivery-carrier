@@ -1,1 +1,1 @@
-* Daniel Herreros <daniel.herreros@bt-group.com>
+* Daniel Herreros <daniel.herreros@braintec.com> (https://braintec.com)

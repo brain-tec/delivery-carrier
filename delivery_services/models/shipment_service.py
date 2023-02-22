@@ -18,6 +18,5 @@ class ShipmentService(models.Model):
         "shipment.service.attribute", "related_service_id"
     )
     product_domain = fields.Char(
-        string="Product Domain",
         help="Domain that is applied over the products for this service",
     )

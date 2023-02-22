@@ -1,10 +1,11 @@
 ##############################################################################
 #
-#    Copyright (c) 2021 brain-tec AG (http://www.braintec-group.com)
+#    Copyright (c) 2021 brain-tec AG (http://www.braintec.com)
 #    All Right Reserved
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
+
 from odoo import fields, models
 
 
