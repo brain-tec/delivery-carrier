@@ -277,7 +277,9 @@ class PostlogisticsWebService(object):
             )
 
         result = []
-        packaging_codes = package and package.package_type_id._get_packaging_codes() or []
+        packaging_codes = (
+            package and package.package_type_id._get_packaging_codes() or []
+        )
 
         if set(packaging_codes) & {"BLN", "N"}:
             cod_attributes = self._cash_on_delivery(picking, package=package)
@@ -528,9 +530,10 @@ class PostlogisticsWebService(object):
                 res["success"] = False
                 res["errors"] = []
                 for error in response_dict["item"]["errors"]:
-                    res["errors"] = _("Error code: %s, Message: %s") % (
-                        error["code"],
-                        error["message"],
+                    res["errors"] = _(
+                        "Error code: %(code)s, Message: %(message)s",
+                        code=error["code"],
+                        message=error["message"],
                     )
                 results.append(res)
                 return results
