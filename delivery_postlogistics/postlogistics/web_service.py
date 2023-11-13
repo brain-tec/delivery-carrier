@@ -435,8 +435,8 @@ class PostlogisticsWebService(object):
                     "Connection Error\n\n"
                     "Looks like the server isn't responding,\n"
                     "Please try again later.\n"
-                    "%s" % e
-                )
+                    "%s"
+                ) % e
             )
 
 
