@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 
 import requests
+from requests.exceptions import RequestException, Timeout, ConnectionError
 from PIL import Image
 
 from odoo import _, exceptions
@@ -415,19 +416,29 @@ class PostlogisticsWebService(object):
                     "Delivery Carrier (PostLogistics)."
                 )
             )
+        try:
+            response = requests.post(
+                url=authentication_url,
+                headers={"content-type": "application/x-www-form-urlencoded"},
+                data={
+                    "grant_type": "client_credentials",
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "scope": "WEDEC_BARCODE_READ",
+                },
+                timeout=60,
+            )
+            return response.json()
+        except (Timeout, ConnectionError, RequestException) as e:
+            raise exceptions.UserError(
+                _(
+                    "Connection Error\n\n"
+                    "Looks like the server isn't responding,\n"
+                    "Please try again later.\n\n"
+                    "%s"
+                ) % e
+            )
 
-        response = requests.post(
-            url=authentication_url,
-            headers={"content-type": "application/x-www-form-urlencoded"},
-            data={
-                "grant_type": "client_credentials",
-                "client_id": client_id,
-                "client_secret": client_secret,
-                "scope": "WEDEC_BARCODE_READ",
-            },
-            timeout=60,
-        )
-        return response.json()
 
     @classmethod
     def get_access_token(cls, picking_carrier):
