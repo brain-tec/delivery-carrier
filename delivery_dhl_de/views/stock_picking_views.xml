@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_from_stock_picking_dhl_de_inherit" model="ir.ui.view">
+        <field name="name">view.form.stock.picking.dhl.de</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='send_to_shipper']" position="before">
+                <field name="dhl_de_picking" invisible="1" />
+                <button
+                    name="get_additional_dhl_label_manually"
+                    string="Print additional DHL labels"
+                    type="object"
+                    attrs="{'invisible':['|',
+                                               ('dhl_de_picking', '=', False),
+                                               ('shipping_weight', '&lt;', 0.000001)]}"
+                />
+            </xpath>
+            <header position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('has_errors_address_dhl', '=', False)]}"
+                >
+                    The delivery address could not be validated by DHL:
+                    <span style="font-style: italic;">
+                        <field name="feedback_validation_address_dhl" nolabel="1" />
+                    </span>
+                </div>
+                <field name="has_errors_address_dhl" invisible="1" />
+            </header>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('show_check_availability', '=', False),
+                                                       ('has_errors_address_dhl', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
