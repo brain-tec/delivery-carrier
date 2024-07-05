@@ -19,7 +19,7 @@ _logger = logging.getLogger(__name__)
 
 _compile_itemid = re.compile(r"[^0-9A-Za-z+\-_]")
 _compile_itemnum = re.compile(r"[^0-9]")
-AUTH_PATH = "/WEDECOAuth/token"
+AUTH_PATH = "/OAuth/token"
 GENERATE_LABEL_PATH = "/api/barcode/v1/generateAddressLabel"
 
 DISALLOWED_CHARS_MAPPING = {
@@ -426,15 +426,16 @@ class PostlogisticsWebService:
 
         client_id = delivery_carrier.postlogistics_client_id
         client_secret = delivery_carrier.postlogistics_client_secret
+        scope = delivery_carrier.postlogistics_scope
         authentication_url = urllib.parse.urljoin(
             delivery_carrier.postlogistics_endpoint_url or "", AUTH_PATH
         )
 
-        if not (client_id and client_secret):
+        if not (client_id and client_secret and scope):
             raise exceptions.UserError(
                 _(
                     "Authorization Required\n\n"
-                    "Please verify postlogistics client id and secret in:\n"
+                    "Please verify postlogistics client id, secret and scope in:\n"
                     "Delivery Carrier (PostLogistics)."
                 )
             )
@@ -446,7 +447,7 @@ class PostlogisticsWebService:
                 "grant_type": "client_credentials",
                 "client_id": client_id,
                 "client_secret": client_secret,
-                "scope": "WEDEC_BARCODE_READ",
+                "scope": scope,
             },
             timeout=60,
         )
