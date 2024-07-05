@@ -1,6 +1,8 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+import requests
+
 from odoo.tests.common import TransactionCase
 
 from ..postlogistics.web_service import PostlogisticsWebService
@@ -115,7 +117,13 @@ class TestPostlogisticsCommon(TransactionCase):
         cls.service_class = PostlogisticsWebService(cls.env.user.company_id)
 
     @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
+
+    @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.setUpClassLicense()
