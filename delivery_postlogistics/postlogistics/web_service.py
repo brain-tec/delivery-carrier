@@ -19,8 +19,8 @@ _logger = logging.getLogger(__name__)
 
 _compile_itemid = re.compile(r"[^0-9A-Za-z+\-_]")
 _compile_itemnum = re.compile(r"[^0-9]")
-AUTH_PATH = "/WEDECOAuth/token"
-GENERATE_LABEL_PATH = "/api/barcode/v1/generateAddressLabel"
+AUTH_PATH = "/OAuth/token"
+GENERATE_LABEL_PATH = "/barcode/v1/generateAddressLabel"
 
 DISALLOWED_CHARS_MAPPING = {
     "|": "",
@@ -38,9 +38,8 @@ class PostlogisticsWebService:
 
     Handbook available here:
     https://developer.post.ch/en/digital-commerce-api
-    https://wedec.post.ch/doc/swagger/index.html?
-        url=https://wedec.post.ch/doc/api/barcode/v1/swagger.yaml
-        #/Barcode/generateAddressLabel
+    https://developer.apis.post.ch/ui/apis/5cff6ab7-8325-4a05-bf6a-b783256a0552
+    /pages/50fa2b65-2f67-4867-ba2b-652f6738676d
 
     Allows to generate labels
 
@@ -415,7 +414,7 @@ class PostlogisticsWebService:
 
     @classmethod
     def _request_access_token(cls, delivery_carrier):
-        if not delivery_carrier.postlogistics_endpoint_url:
+        if not delivery_carrier.postlogistics_token_url:
             raise exceptions.UserError(
                 _(
                     "Missing Configuration\n\n"
@@ -426,15 +425,16 @@ class PostlogisticsWebService:
 
         client_id = delivery_carrier.postlogistics_client_id
         client_secret = delivery_carrier.postlogistics_client_secret
+        scope = delivery_carrier.postlogistics_scope
         authentication_url = urllib.parse.urljoin(
-            delivery_carrier.postlogistics_endpoint_url or "", AUTH_PATH
+            delivery_carrier.postlogistics_token_url or "", AUTH_PATH
         )
 
-        if not (client_id and client_secret):
+        if not (client_id and client_secret and scope):
             raise exceptions.UserError(
                 _(
                     "Authorization Required\n\n"
-                    "Please verify postlogistics client id and secret in:\n"
+                    "Please verify postlogistics client id, secret and scope in:\n"
                     "Delivery Carrier (PostLogistics)."
                 )
             )
@@ -446,7 +446,7 @@ class PostlogisticsWebService:
                 "grant_type": "client_credentials",
                 "client_id": client_id,
                 "client_secret": client_secret,
-                "scope": "WEDEC_BARCODE_READ",
+                "scope": scope,
             },
             timeout=60,
         )
