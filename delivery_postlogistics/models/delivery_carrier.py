@@ -22,7 +22,7 @@ class DeliveryCarrier(models.Model):
 
     postlogistics_endpoint_url = fields.Char(
         string="Endpoint URL",
-        default="https://wedecint.post.ch/",
+        default="https://api-int.post.ch",
         required=True,
     )
     postlogistics_client_id = fields.Char(
@@ -32,7 +32,9 @@ class DeliveryCarrier(models.Model):
         string="Client Secret", groups="base.group_system"
     )
     postlogistics_scope = fields.Char(
-        string="Scope", groups="base.group_system"
+        string="Scope",
+        default="DCAPI_BARCODE_READ",
+        groups="base.group_system"
     )
     postlogistics_logo = fields.Binary(
         string="Company Logo on Post labels",
@@ -105,14 +107,14 @@ class DeliveryCarrier(models.Model):
     def onchange_prod_environment(self):
         """
         Auto change the end point url following the environment
-        - Test: https://wedecint.post.ch/
-        - Prod: https://wedec.post.ch/
+        - Test: https://api-int.post.ch/
+        - Prod: https://api.post.ch/
         """
         for carrier in self:
             if carrier.prod_environment:
-                carrier.postlogistics_endpoint_url = "https://wedec.post.ch/"
+                carrier.postlogistics_endpoint_url = "https://api.post.ch/"
             else:
-                carrier.postlogistics_endpoint_url = "https://wedecint.post.ch/"
+                carrier.postlogistics_endpoint_url = "https://api-int.post.ch/"
 
     def postlogistics_get_tracking_link(self, picking):
         return (

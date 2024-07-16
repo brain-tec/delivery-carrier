@@ -38,9 +38,8 @@ class PostlogisticsWebService:
 
     Handbook available here:
     https://developer.post.ch/en/digital-commerce-api
-    https://wedec.post.ch/doc/swagger/index.html?
-        url=https://wedec.post.ch/doc/api/barcode/v1/swagger.yaml
-        #/Barcode/generateAddressLabel
+    https://developer.apis.post.ch/ui/apis/5cff6ab7-8325-4a05-bf6a-b783256a0552
+    /pages/50fa2b65-2f67-4867-ba2b-652f6738676d
 
     Allows to generate labels
 
