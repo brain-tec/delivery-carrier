@@ -27,6 +27,10 @@
                                 name="postlogistics_client_secret"
                                 required="delivery_type == 'postlogistics'"
                             />
+                            <field
+                                name="postlogistics_scope"
+                                required="delivery_type == 'postlogistics'"
+                            />
                             <button
                                 name="verify_credentials"
                                 type="object"

@@ -31,6 +31,9 @@ class DeliveryCarrier(models.Model):
     postlogistics_client_secret = fields.Char(
         string="Client Secret", groups="base.group_system"
     )
+    postlogistics_scope = fields.Char(
+        string="Scope", groups="base.group_system"
+    )
     postlogistics_logo = fields.Binary(
         string="Company Logo on Post labels",
         help="Optional company logo to show on label.\n"
