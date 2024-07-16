@@ -67,7 +67,7 @@ interactions:
         content-type:
           - application/json
       method: POST
-      uri: https://api-int.post.ch/api/barcode/v1/generateAddressLabel
+      uri: https://dcapi.apis-int.post.ch/barcode/v1/generateAddressLabel
     response:
       body:
         string: "{\n  \"labelDefinition\" : {\n    \"labelLayout\" : \"A6\",\n    \"\

@@ -20,7 +20,7 @@ _logger = logging.getLogger(__name__)
 _compile_itemid = re.compile(r"[^0-9A-Za-z+\-_]")
 _compile_itemnum = re.compile(r"[^0-9]")
 AUTH_PATH = "/OAuth/token"
-GENERATE_LABEL_PATH = "/api/barcode/v1/generateAddressLabel"
+GENERATE_LABEL_PATH = "/barcode/v1/generateAddressLabel"
 
 DISALLOWED_CHARS_MAPPING = {
     "|": "",
@@ -414,7 +414,7 @@ class PostlogisticsWebService:
 
     @classmethod
     def _request_access_token(cls, delivery_carrier):
-        if not delivery_carrier.postlogistics_endpoint_url:
+        if not delivery_carrier.postlogistics_token_url:
             raise exceptions.UserError(
                 _(
                     "Missing Configuration\n\n"
@@ -427,7 +427,7 @@ class PostlogisticsWebService:
         client_secret = delivery_carrier.postlogistics_client_secret
         scope = delivery_carrier.postlogistics_scope
         authentication_url = urllib.parse.urljoin(
-            delivery_carrier.postlogistics_endpoint_url or "", AUTH_PATH
+            delivery_carrier.postlogistics_token_url or "", AUTH_PATH
         )
 
         if not (client_id and client_secret and scope):

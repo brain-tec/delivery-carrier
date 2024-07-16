@@ -16,6 +16,10 @@
                     <group>
                         <group string="Credentials">
                             <field
+                                name="postlogistics_token_url"
+                                required="delivery_type == 'postlogistics'"
+                            />
+                            <field
                                 name="postlogistics_endpoint_url"
                                 required="delivery_type == 'postlogistics'"
                             />

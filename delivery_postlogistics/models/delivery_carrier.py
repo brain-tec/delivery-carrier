@@ -19,10 +19,14 @@ class DeliveryCarrier(models.Model):
     postlogistics_default_package_type_id = fields.Many2one(
         "stock.package.type", domain=[("package_carrier_type", "=", "postlogistics")]
     )
-
+    postlogistics_token_url = fields.Char(
+        string="Endpoint Token",
+        default="https://api-int.post.ch",
+        required=True,
+    )
     postlogistics_endpoint_url = fields.Char(
         string="Endpoint URL",
-        default="https://api-int.post.ch",
+        default="https://dcapi.apis-int.post.ch",
         required=True,
     )
     postlogistics_client_id = fields.Char(
@@ -34,7 +38,7 @@ class DeliveryCarrier(models.Model):
     postlogistics_scope = fields.Char(
         string="Scope",
         default="DCAPI_BARCODE_READ",
-        groups="base.group_system"
+        groups="base.group_system",
     )
     postlogistics_logo = fields.Binary(
         string="Company Logo on Post labels",
@@ -107,14 +111,16 @@ class DeliveryCarrier(models.Model):
     def onchange_prod_environment(self):
         """
         Auto change the end point url following the environment
-        - Test: https://api-int.post.ch/
-        - Prod: https://api.post.ch/
+        - Test: https://api-int.post.ch/ and https://dcapi.apis.post.ch/
+        - Prod: https://api.post.ch/ and https://dcapi.apis-int.post.ch/
         """
         for carrier in self:
             if carrier.prod_environment:
-                carrier.postlogistics_endpoint_url = "https://api.post.ch/"
+                carrier.postlogistics_token_url = "https://api.post.ch/"
+                carrier.postlogistics_endpoint_url = "https://dcapi.apis.post.ch/"
             else:
-                carrier.postlogistics_endpoint_url = "https://api-int.post.ch/"
+                carrier.postlogistics_token_url = "https://api-int.post.ch/"
+                carrier.postlogistics_endpoint_url = "https://dcapi.apis-int.post.ch/"
 
     def postlogistics_get_tracking_link(self, picking):
         return (
