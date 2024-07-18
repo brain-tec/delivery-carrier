@@ -119,7 +119,7 @@ class PostlogisticsWebService:
         partner_zip = self._sanitize_string(partner.zip)
         partner_city = self._sanitize_string(partner.city)
         recipient = {
-            "name1": sanitized_partner_name[:35],
+            "name1": sanitized_partner_name[:25],
             "street": partner_street[:35],
             "zip": partner_zip[:10],
             "city": partner_city[:35],
@@ -171,7 +171,7 @@ class PostlogisticsWebService:
         if not partner_name:
             raise exceptions.UserError(_("Customer name is required."))
         customer = {
-            "name1": self._sanitize_string(partner_name)[:35],
+            "name1": self._sanitize_string(partner_name)[:25],
             "street": self._sanitize_string(partner.street)[:35],
             "zip": self._sanitize_string(partner.zip)[:10],
             "city": self._sanitize_string(partner.city)[:35],
