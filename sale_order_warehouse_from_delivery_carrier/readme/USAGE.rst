@@ -1,7 +1,7 @@
 Create a new quotation and select a shipping method.
 
-If selected shipping method has a SO warehouse defined
+If selected shipping method has a sales order warehouse defined
 this warehouse will be automatically set in the quotation.
 
 **Note**:
-warehouse will be NOT updated if Sales Order is already confirmed.
+The warehouse will NOT be updated if the sales order is already confirmed.

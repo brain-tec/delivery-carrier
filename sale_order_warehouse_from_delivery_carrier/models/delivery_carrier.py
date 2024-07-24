@@ -6,6 +6,6 @@ class DeliveryCarrier(models.Model):
 
     so_warehouse_id = fields.Many2one(
         comodel_name="stock.warehouse",
-        string="SO Warehouse",
-        help="Default Warehouse for sale where uses current Delivery Carrier",
+        string="Sales Order Warehouse",
+        help="Default warehouse for the sales order that uses this delivery carrier",
     )

@@ -4,9 +4,7 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.depends(
-        "user_id", "company_id", "state", "carrier_id", "carrier_id.so_warehouse_id"
-    )
+    @api.depends("user_id", "company_id", "carrier_id")
     def _compute_warehouse_id(self):
         # Set warehouse by shipping method
         so_with_shipping = self.browse()
