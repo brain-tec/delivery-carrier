@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo-addon-delivery_roulier_option>=16.0dev,<16.1dev',
         'odoo-addon-delivery_schenker>=16.0dev,<16.1dev',
         'odoo-addon-delivery_state>=16.0dev,<16.1dev',
+        'odoo-addon-delivery_state_manual>=16.0dev,<16.1dev',
         'odoo-addon-partner_delivery_schedule>=16.0dev,<16.1dev',
         'odoo-addon-partner_delivery_zone>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_warehouse_from_delivery_carrier>=16.0dev,<16.1dev',
