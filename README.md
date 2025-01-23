@@ -60,6 +60,7 @@ addon | version | maintainers | summary
 [sale_order_warehouse_from_delivery_carrier](sale_order_warehouse_from_delivery_carrier/) | 16.0.1.0.0 |  | Sale Order WH from Delivery Carrier
 [server_environment_delivery](server_environment_delivery/) | 16.0.1.0.0 |  | Configure prod environment for delivery carriers
 [stock_picking_delivery_link](stock_picking_delivery_link/) | 16.0.1.1.4 |  | Adds link to the delivery on all intermediate operations.
+[stock_picking_delivery_package_type_domain](stock_picking_delivery_package_type_domain/) | 16.0.1.0.1 |  | This module will allow to extend the domain to filter package type selection in 'Choose Delivery Package' wizard
 [stock_picking_report_delivery_cost](stock_picking_report_delivery_cost/) | 16.0.1.1.0 |  | Show delivery cost in delivery slip and picking operations reports
 
 [//]: # (end addons)

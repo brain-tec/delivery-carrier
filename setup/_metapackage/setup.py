@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-sale_order_warehouse_from_delivery_carrier>=16.0dev,<16.1dev',
         'odoo-addon-server_environment_delivery>=16.0dev,<16.1dev',
         'odoo-addon-stock_picking_delivery_link>=16.0dev,<16.1dev',
+        'odoo-addon-stock_picking_delivery_package_type_domain>=16.0dev,<16.1dev',
         'odoo-addon-stock_picking_report_delivery_cost>=16.0dev,<16.1dev',
     ],
     classifiers=[
