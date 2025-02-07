@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 18.0.1.0.0 |  | Hide free fee lines on sales orders
 [delivery_package_fee](delivery_package_fee/) | 18.0.1.0.0 |  | Add fees on sales order for delivered packages
 [partner_delivery_schedule](partner_delivery_schedule/) | 18.0.1.0.0 |  | Set on partners a schedule for delivery goods
+[server_environment_delivery](server_environment_delivery/) | 18.0.1.0.0 |  | Configure prod environment for delivery carriers
 
 [//]: # (end addons)
 
