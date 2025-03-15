@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [delivery_postlogistics](delivery_postlogistics/) | 16.0.1.1.0 |  | Print PostLogistics shipping labels using the Barcode web service
 [delivery_postlogistics_server_env](delivery_postlogistics_server_env/) | 16.0.1.0.0 |  | Server Environment layer for Delivery Postlogistics
 [delivery_price_method](delivery_price_method/) | 16.0.1.1.0 |  | Provides fields to be able to contemplate the tracking statesand also adds a global fields
-[delivery_purchase](delivery_purchase/) | 16.0.1.1.0 |  | Delivery costs in purchases
+[delivery_purchase](delivery_purchase/) | 16.0.1.1.1 |  | Delivery costs in purchases
 [delivery_roulier](delivery_roulier/) | 16.0.2.1.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) | Integration of multiple carriers
 [delivery_roulier_dpd_fr](delivery_roulier_dpd_fr/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Generate Labels for DPD
 [delivery_roulier_geodis_fr](delivery_roulier_geodis_fr/) | 16.0.1.1.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Generate Label for Geodis logistic
