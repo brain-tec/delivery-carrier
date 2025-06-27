@@ -30,11 +30,12 @@ addon | version | maintainers | summary
 [delivery_carrier_multi_zip](delivery_carrier_multi_zip/) | 17.0.1.0.0 |  | Multiple ZIP intervals for the same delivery method
 [delivery_carrier_partner](delivery_carrier_partner/) | 17.0.1.0.0 |  | Add a partner in the delivery carrier
 [delivery_correos_express](delivery_correos_express/) | 17.0.1.0.0 |  | Delivery Carrier implementation for Correos Express using their API
-[delivery_cttexpress](delivery_cttexpress/) | 17.0.1.0.0 |  | Delivery Carrier implementation for CTT Express API
+[delivery_cttexpress](delivery_cttexpress/) | 17.0.1.0.1 |  | Delivery Carrier implementation for CTT Express API
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 17.0.1.0.0 |  | Hide free fee lines on sales orders
 [delivery_multi_destination](delivery_multi_destination/) | 17.0.1.0.0 |  | Multiple destinations for the same delivery method
 [delivery_package_number](delivery_package_number/) | 17.0.1.0.0 |  | Set or compute number of packages for a picking
 [delivery_price_method](delivery_price_method/) | 17.0.1.0.0 |  | Force a fixed or rule price calculation on Delivery Methods, for example to override a webservice provided prices.
+[delivery_purchase](delivery_purchase/) | 17.0.1.0.0 |  | Delivery costs in purchases
 [delivery_roulier](delivery_roulier/) | 17.0.1.0.1 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Integration of multiple carriers
 [delivery_roulier_option](delivery_roulier_option/) | 17.0.1.0.0 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Add options to roulier modules
 [delivery_state](delivery_state/) | 17.0.1.0.0 |  | Provides fields to be able to contemplate the tracking statesand also adds a global fields
