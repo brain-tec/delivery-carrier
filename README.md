@@ -31,12 +31,14 @@ addon | version | maintainers | summary
 [delivery_carrier_manual_weight](delivery_carrier_manual_weight/) | 18.0.1.0.0 |  | Allow setting weight and shipping weight in stock transfers manually based on carrier.
 [delivery_carrier_option](delivery_carrier_option/) | 18.0.1.0.0 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Delivery Carrier Option
 [delivery_carrier_partner](delivery_carrier_partner/) | 18.0.1.0.0 |  | Add a partner in the delivery carrier
+[delivery_carrier_picking_valid](delivery_carrier_picking_valid/) | 18.0.1.0.0 | <a href='https://github.com/mmequignon'><img src='https://github.com/mmequignon.png' width='32' height='32' style='border-radius:50%;' alt='mmequignon'/></a> | Checks if a transfer matches carrier requirements
 [delivery_carrier_pricelist](delivery_carrier_pricelist/) | 18.0.1.0.0 |  | Compute delivery method price based on the product's pricelist.
 [delivery_carrier_shipping_label](delivery_carrier_shipping_label/) | 18.0.1.0.0 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Delivery Carrier Shipping Label
 [delivery_carrier_warehouse](delivery_carrier_warehouse/) | 18.0.1.0.1 |  | Get delivery method used in sales orders from warehouse
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 18.0.1.0.0 |  | Hide free fee lines on sales orders
 [delivery_package_fee](delivery_package_fee/) | 18.0.1.0.0 |  | Add fees on sales order for delivered packages
 [delivery_package_number](delivery_package_number/) | 18.0.1.0.0 |  | Set or compute number of packages for a picking
+[delivery_package_type_shipping_weight](delivery_package_type_shipping_weight/) | 18.0.1.0.0 |  | Set and manage shipping weight based on package type.
 [delivery_postlogistics](delivery_postlogistics/) | 18.0.1.0.1 |  | Print PostLogistics shipping labels using the Barcode web service
 [delivery_postlogistics_dangerous_goods](delivery_postlogistics_dangerous_goods/) | 18.0.1.0.0 |  | Declare dangerous goods when generating postlogistics labels
 [delivery_postlogistics_server_env](delivery_postlogistics_server_env/) | 18.0.1.0.0 |  | Server Environment layer for Delivery Postlogistics
