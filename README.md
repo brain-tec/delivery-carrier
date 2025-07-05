@@ -24,11 +24,13 @@ addon | version | maintainers | summary
 [base_delivery_carrier_label](base_delivery_carrier_label/) | 17.0.1.1.0 |  | Base module for carrier labels
 [delivery_auto_refresh](delivery_auto_refresh/) | 17.0.1.0.0 |  | Auto-refresh delivery price in sales orders
 [delivery_carrier_account](delivery_carrier_account/) | 17.0.1.0.0 |  | Delivery Carrier Account
+[delivery_carrier_global_manifest](delivery_carrier_global_manifest/) | 17.0.1.0.0 | <a href='https://github.com/tisho99'><img src='https://github.com/tisho99.png' width='32' height='32' style='border-radius:50%;' alt='tisho99'/></a> | Manifest files for all carriers
 [delivery_carrier_info](delivery_carrier_info/) | 17.0.1.0.0 |  | Add code on carrier
 [delivery_carrier_manual_price](delivery_carrier_manual_price/) | 17.0.1.0.0 |  | Allow setting manual shipping cost in sale order.
 [delivery_carrier_manual_weight](delivery_carrier_manual_weight/) | 17.0.1.0.0 |  | Allow setting weight and shipping weight in stock transfers manually based on carrier.
 [delivery_carrier_multi_zip](delivery_carrier_multi_zip/) | 17.0.1.0.0 |  | Multiple ZIP intervals for the same delivery method
 [delivery_carrier_partner](delivery_carrier_partner/) | 17.0.1.0.0 |  | Add a partner in the delivery carrier
+[delivery_cbl](delivery_cbl/) | 17.0.1.0.0 |  | Integrate CBL webservice
 [delivery_correos_express](delivery_correos_express/) | 17.0.1.0.0 |  | Delivery Carrier implementation for Correos Express using their API
 [delivery_cttexpress](delivery_cttexpress/) | 17.0.1.0.1 |  | Delivery Carrier implementation for CTT Express API
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 17.0.1.0.0 |  | Hide free fee lines on sales orders
