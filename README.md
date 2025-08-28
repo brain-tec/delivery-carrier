@@ -44,6 +44,7 @@ addon | version | maintainers | summary
 [delivery_free_fee_removal](delivery_free_fee_removal/) | 18.0.1.0.0 |  | Hide free fee lines on sales orders
 [delivery_package_fee](delivery_package_fee/) | 18.0.1.0.0 |  | Add fees on sales order for delivered packages
 [delivery_package_number](delivery_package_number/) | 18.0.1.0.0 |  | Set or compute number of packages for a picking
+[delivery_package_type_number_parcels](delivery_package_type_number_parcels/) | 18.0.1.0.0 |  | Number of parcels in a package type
 [delivery_package_type_shipping_weight](delivery_package_type_shipping_weight/) | 18.0.1.0.0 |  | Set and manage shipping weight based on package type.
 [delivery_postlogistics](delivery_postlogistics/) | 18.0.1.2.0 |  | Print PostLogistics shipping labels using the Barcode web service
 [delivery_postlogistics_dangerous_goods](delivery_postlogistics_dangerous_goods/) | 18.0.1.0.0 |  | Declare dangerous goods when generating postlogistics labels
@@ -57,6 +58,7 @@ addon | version | maintainers | summary
 [server_environment_delivery](server_environment_delivery/) | 18.0.1.0.0 |  | Configure prod environment for delivery carriers
 [stock_picking_carrier_from_rule](stock_picking_carrier_from_rule/) | 18.0.1.0.0 |  | Set the carrier on picking if the stock rule used has a partner address set with a delivery method.
 [stock_picking_delivery_link](stock_picking_delivery_link/) | 18.0.1.0.1 |  | Adds link to the delivery on all intermediate operations.
+[stock_picking_delivery_package_type_domain](stock_picking_delivery_package_type_domain/) | 18.0.1.0.0 |  | This module will allow to extend the domain to filter package type selection in 'Choose Delivery Package' wizard
 [stock_picking_report_delivery_cost](stock_picking_report_delivery_cost/) | 18.0.1.0.0 |  | Show delivery cost in delivery slip and picking operations reports
 
 [//]: # (end addons)
