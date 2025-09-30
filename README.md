@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [delivery_carrier_manual_price](delivery_carrier_manual_price/) | 16.0.1.0.0 |  | Allow setting manual shipping cost in sale order.
 [delivery_carrier_manual_weight](delivery_carrier_manual_weight/) | 16.0.1.0.0 |  | Allow setting weight and shipping weight in stock transfers manually based on carrier.
 [delivery_carrier_max_weight_constraint](delivery_carrier_max_weight_constraint/) | 16.0.1.0.1 |  | Constrain package maximum weight
+[delivery_carrier_multi_zip](delivery_carrier_multi_zip/) | 16.0.1.0.0 |  | Multiple ZIP intervals for the same delivery method
 [delivery_carrier_package_measure_required](delivery_carrier_package_measure_required/) | 16.0.1.0.0 |  | Allow the configuration of which package measurements are required on a delivery carrier basis.
 [delivery_carrier_partner](delivery_carrier_partner/) | 16.0.1.0.0 |  | Add a partner in the delivery carrier
 [delivery_correos_express](delivery_correos_express/) | 16.0.1.0.0 |  | Delivery Carrier implementation for Correos Express using their API
