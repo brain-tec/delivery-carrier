@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo-addon-delivery_carrier_partner>=16.0dev,<16.1dev',
         'odoo-addon-delivery_correos_express>=16.0dev,<16.1dev',
         'odoo-addon-delivery_cttexpress>=16.0dev,<16.1dev',
+        'odoo-addon-delivery_dachser>=16.0dev,<16.1dev',
         'odoo-addon-delivery_deliverea>=16.0dev,<16.1dev',
         'odoo-addon-delivery_driver>=16.0dev,<16.1dev',
         'odoo-addon-delivery_driver_stock_picking_batch>=16.0dev,<16.1dev',
