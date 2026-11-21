@@ -1,0 +1,12 @@
+[project]
+name = "odoo-addons-oca-delivery-carrier"
+version = "20.0.20261120.1"
+dependencies = [
+    "odoo-addon-delivery_package_number==20.0.*",
+    "odoo-addon-delivery_state==20.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 20.0",
+]
